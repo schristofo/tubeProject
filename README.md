@@ -1,4 +1,4 @@
-# Skatakia
+# Skatakia Project
 
 Skatakia is a nonsense project for experimenting with [Github](https://github.com/) capabilities.
 
