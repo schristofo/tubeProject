@@ -28,11 +28,11 @@ int main(int argc, char * argv[]){
    ;
   }
   else if( argc > 2 ) {
-    printf("Error: Too many arguments.\nTry again with:\n\t./bin/skata <input-file-path>\n");
+    printf("Error: Too many arguments.\nTry again with:\n\t%s <input-file-path>\n", argv[0]);
     exit(0);
   }
   else {
-    printf("Error: Input file path expected.\nTry again with:\n\t./bin/skata <input-file-path>\n");
+    printf("Error: Input file path expected.\nTry again with:\n\t%s <input-file-path>\n", argv[0]);
     exit(0);
   }
 
