@@ -2,8 +2,8 @@ CC=gcc
 SDIR=./src
 BDIR=./bin
 
-$(BDIR)/skata: $(SDIR)/skata.c
+$(BDIR)/ff: $(SDIR)/ff.c
 	$(CC) $^ -o $@
 
 clean:
-	rm $(BDIR)/skata
+	rm $(BDIR)/ff
