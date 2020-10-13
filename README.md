@@ -20,12 +20,12 @@ make
 ## Usage
 
 ```bash
-./bin/skata <input-file-path>
+./bin/5f <input-file-path>
 ```
 or
 ```bash
 cd bin
-./skata <input-file-path>
+./5f <input-file-path>
 ```
 
 to execute.
