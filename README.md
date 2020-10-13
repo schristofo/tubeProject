@@ -1,6 +1,6 @@
 # The Five Formula Project
 
-Five Formula is a command line project parsing a sequence of characters in order to generate a number. The model built from this sequence is consisted of four mathematical calculations (addition, multiplication, power, division) of thee number 5.
+Five Formula is a command line project parsing a sequence of characters in order to generate a number. The model built from this sequence is consisted of four mathematical calculations (addition, multiplication, power, division) of the number 5.
 
 ## Examples
 
