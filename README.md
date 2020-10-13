@@ -10,6 +10,7 @@ The acceptable format of the formulas/models is:
 
 ## Examples
 
+- `model: -*-` is translated into `5*5=25`.
 - `model: -+-/-^-` is translated into `((5+5)/5)^5=32`. 
 - `model: -+-+-/-+` is translated into `(((5+5)+5)/5)+5=8`.
 - `model: -+-/+` will generate the error `Error: Final dash (-) expected`.
