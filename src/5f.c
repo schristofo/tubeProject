@@ -24,31 +24,49 @@ void slash(){
 int main(int argc, char * argv[]){
 
   //passing destination path correctly
-  if( argc == 2 ) {
+  if( argc == 3 ) {
    ;
   }
-  else if( argc > 2 ) {
-    printf("Error: Too many arguments.\nTry again with:\n\t%s <input-file-path>\n", argv[0]);
+  else if( argc > 3 ) {
+    printf("Error: Too many arguments.\nTry again with:\n\t%s <input-file-path> <model-file-path>\n", argv[0]);
     exit(0);
   }
   else {
-    printf("Error: Input file path expected.\nTry again with:\n\t%s <input-file-path>\n", argv[0]);
+    printf("Error: Model file path expected.\nTry again with:\n\t%s <input-file-path> <model-file-path>\n", argv[0]);
     exit(0);
   }
 
-  //open input file
-  FILE * file = fopen(argv[1], "r");
-  if(file == NULL){
+  FILE * ifile = fopen(argv[1], "r");
+  if(ifile == NULL){
     printf("Error: Input file missing or corrupted.\nTry using another destination\n");
+    exit(0);
+  }
+  char* ch = (char*) malloc(sizeof(char));
+  while(1) {
+    *ch = fgetc(ifile);
+    if(isdigit(*ch) == 0) {
+      printf("Error: Digit expected inside the inout file\n");
+      continue;
+    }
+    break;
+  }
+  fclose(ifile);
+  result = atoi(ch);
+  printf("input: int%d\n", result);
+
+
+  //open model file
+  FILE * mfile = fopen(argv[2], "r");
+  if(mfile == NULL){
+    printf("Error: Model file missing or corrupted.\nTry using another destination\n");
     exit(0);
   }
 
   //read the file
-  char* ch = (char*) malloc(sizeof(char));
   printf("model: ");
-
   while(1) {
-    *ch = fgetc(file);
+
+    *ch = fgetc(mfile);
 
     //state 0: expecting dash(-)
     if(state == 0) {
@@ -109,6 +127,6 @@ int main(int argc, char * argv[]){
     }
 
   }
-  fclose(file);
+  fclose(mfile);
 
 }
