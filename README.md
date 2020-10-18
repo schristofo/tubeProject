@@ -15,11 +15,11 @@ The format of the formulas/models is:
 
 ## Functions
 
-1. input-functions
+1. #### input-functions ####
   - `- int -`: specifies that the input is an integer
   - `- array<num> -`: specifies that the input is an array with <num> positions
 
-2. functions
+2. #### functions ####
  - `- add<num> -`: adds <num> to the input. (input: num, output: num)
  - `- sub<num> -`: subtracts <num> from the input. (input: num, output: num)
  - `- mult<num> -`: multiplies the input with the <num>. (input: num, output: num)
