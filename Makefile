@@ -1,10 +1,15 @@
 CC=gcc
-DFLAGS= 
+DFLAGS=
 SDIR=./src
 BDIR=./bin
+IDIR=./inc
+INCLUDES = -I$(IDIR)
 
-$(BDIR)/5f: $(SDIR)/5f.c
-	$(CC) $^ -o $@ $(DFLAGS)
+$(BDIR)/tube: $(SDIR)/main.c $(SDIR)/lex.o $(IDIR)/lex.h
+	$(CC) -o $@ $^ $(DFLAGS)
+
+$(SDIR)/lex.o: $(SDIR)/lex.c
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $^
 
 clean:
-	rm $(BDIR)/5f
+	rm $(BDIR)/tube; rm $(SDIR)/lex.o

@@ -1,21 +1,50 @@
-# The Five Formula Project
+# The **tube** Project
 
-Five Formula is a command line project parsing a sequence of characters in order to generate a number. The model built from this sequence is consisted of four mathematical calculations (addition, multiplication, power, division) of the number 5.
+**tube** is a command line project for building calculation models quickly. These models are consisted of a sequence of functions executing calculations/permutations onto a user-defined input. Each function takes as input the output of the previous function and outputs the result to the next one.
 
 ## Format
 
-The acceptable format of the formulas/models is:
-  `- <function> - <function> - ... - <function> -`
- where <function> can be substituted with one of the following values: `+`, `*`, `^`, `/`.
+The format of the formulas/models is:
+  `- <input-function> - <function> - ... - <function> -`
+ where:
+  1. <input-function> is a function that reads the `<input-file>` and imports its content to the model into the appropriate form.
+  2. <function> is a function executing a calculation on the input and generating an output.
+
+  Notice that every calculation is separated with dashes from the next and previous one, as well as, the whole model starts with a dash and ends with a dash.
+  In *Functions* section there is an analytical documentation for each function.
+
+## Functions
+
+1. <input-functions>
+  - `- int -`: specifies that the input is an integer
+  - `- array<num> -`: specifies that the input is an array with <num> positions
+
+2. <functions>
+ - `- add<num> -`: adds <num> to the input. (input: num, output: num)
+ - `- sub<num> -`: subtracts <num> from the input. (input: num, output: num)
+ - `- mult<num> -`: multiplies the input with the <num>. (input: num, output: num)
+ - `- pow<num> -`: input to the power of <num>. (input: num, output: num)
+ - `- med -`: outputs the median value of an input array. (input: array, output: num)
+ - `- mean -`: outputs the mean value of an input array. (input: array, output: num)
+ - `- max -`: outputs the maximum value of an input array. (input: array, output: num)
+ - `- min -`: outputs the minimum value of an input array. (input: array, output: num)
+ - `- bp -`: breakpoint. prints the value and and passes it to the next function. (input: anything, output: input)
+ - `- extract -`: extracts the value to a predefined file and passes it to the next function. (input: anything, output: input)
 
 ## Examples
 
-- `model: -*-` is translated into `5*5=25`.
-- `model: -+-/-^-` is translated into `((5+5)/5)^5=32`. 
-- `model: -+-+-/-+` is translated into `(((5+5)+5)/5)+5=8`.
-- `model: -+-/+` will generate the error `Error: Final dash (-) expected`.
+- model: `-int-add3-pow2-`,
+  with input: `2`,
+  gives output: `(2+3)^2=25`.
 
-Notice that every calculation is separated with dashes from the next and previous one, as well as, the whole model starts with a dash and ends with a dash
+- model: `-array5-mean-mult8-`,
+  with input: `2,5,8,1,4`,
+  gives output: `((2+5+8+1+4)/5)*8=32`.
+
+- model: `-array10-max-add5-`,
+  with input: `1,2,3,4,5,6,7,8,9,10`,
+  gives output: `10+5=15`.
+
 
 ## Compile
 
@@ -28,12 +57,12 @@ make
 ## Usage
 
 ```bash
-./bin/5f <input-file-path>
+./bin/tube <input-file-path> <model-file-path>
 ```
 or
 ```bash
 cd bin
-./5f <input-file-path>
+./tube <input-file-path> <model-file-path>
 ```
 
 to execute.
