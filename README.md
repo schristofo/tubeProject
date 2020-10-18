@@ -20,16 +20,16 @@ The format of the formulas/models is:
   - `- array<num> -`: specifies that the input is an array with <num> positions
 
 - #### functions ####
- - `- add<num> -`: adds <num> to the input. (input: num, output: num)
- - `- sub<num> -`: subtracts <num> from the input. (input: num, output: num)
- - `- mult<num> -`: multiplies the input with the <num>. (input: num, output: num)
- - `- pow<num> -`: input to the power of <num>. (input: num, output: num)
- - `- med -`: outputs the median value of an input array. (input: array, output: num)
- - `- mean -`: outputs the mean value of an input array. (input: array, output: num)
- - `- max -`: outputs the maximum value of an input array. (input: array, output: num)
- - `- min -`: outputs the minimum value of an input array. (input: array, output: num)
- - `- bp -`: breakpoint. prints the value and and passes it to the next function. (input: anything, output: input)
- - `- extract -`: extracts the value to a predefined file and passes it to the next function. (input: anything, output: input)
+  - `- add<num> -`: adds <num> to the input. (input: num, output: num)
+  - `- sub<num> -`: subtracts <num> from the input. (input: num, output: num)
+  - `- mult<num> -`: multiplies the input with the <num>. (input: num, output: num)
+  - `- pow<num> -`: input to the power of <num>. (input: num, output: num)
+  - `- med -`: outputs the median value of an input array. (input: array, output: num)
+  - `- mean -`: outputs the mean value of an input array. (input: array, output: num)
+  - `- max -`: outputs the maximum value of an input array. (input: array, output: num)
+  - `- min -`: outputs the minimum value of an input array. (input: array, output: num)
+  - `- bp -`: breakpoint. prints the value and and passes it to the next function. (input: anything, output: input)
+  - `- extract -`: extracts the value to a predefined file and passes it to the next function. (input: anything, output: input)
 
 ## Examples
 
