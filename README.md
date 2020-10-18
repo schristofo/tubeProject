@@ -7,8 +7,8 @@
 The format of the formulas/models is:
   `- <input-function> - <function> - ... - <function> -`
  where:
-  1. <input-function> is a function that reads the `<input-file>` and imports its content to the model into the appropriate form.
-  2. <function> is a function executing a calculation on the input and generating an output.
+  1. `<input-function>` is a function that reads the `<input-file>` and imports its content to the model into the appropriate form.
+  2. `<function>` is a function executing a calculation on the input and generating an output.
 
   Notice that every calculation is separated with dashes from the next and previous one, as well as, the whole model starts with a dash and ends with a dash.
   In *Functions* section there is an analytical documentation for each function.
