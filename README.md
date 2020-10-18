@@ -20,10 +20,10 @@ The format of the formulas/models is:
   - `- array<num> -`: specifies that the input is an array with <num> positions
 
 - #### functions ####
-  - `- add<num> -`: adds <num> to the input. (input: num, output: num)
-  - `- sub<num> -`: subtracts <num> from the input. (input: num, output: num)
-  - `- mult<num> -`: multiplies the input with the <num>. (input: num, output: num)
-  - `- pow<num> -`: input to the power of <num>. (input: num, output: num)
+  - `- add<num> -`: adds `<num>` to the input. (input: num, output: num)
+  - `- sub<num>` -: subtracts `<num>` from the input. (input: num, output: num)
+  - `- mult<num> -`: multiplies the input with the `<num>`. (input: num, output: num)
+  - `- pow<num> -`: input to the power of `<num>`. (input: num, output: num)
   - `- med -`: outputs the median value of an input array. (input: array, output: num)
   - `- mean -`: outputs the mean value of an input array. (input: array, output: num)
   - `- max -`: outputs the maximum value of an input array. (input: array, output: num)
