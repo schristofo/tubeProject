@@ -52,12 +52,12 @@ int lex(char token[MAXLEN])
 
 	//final states
 	if(state==E1){
-		if(strcmp(token,"int")==0) return INTTK;
+		if(strcmp(token,"num")==0) return NUMTK;
+		if(strcmp(token,"array")==0) return ARRAYTK;
 		if(strcmp(token,"add")==0) return ADDTK;
 		if(strcmp(token,"sub")==0)	return SUBTK;
 		if(strcmp(token,"mult")==0) return MULTTK;
 		if(strcmp(token,"pow")==0) return POWTK;
-		if(strcmp(token,"array")==0) return ARRAYTK;
 		if(strcmp(token,"med")==0) return MEDTK;
 		if(strcmp(token,"mean")==0) return MEANTK;
 		if(strcmp(token,"max")==0) return MAXTK;

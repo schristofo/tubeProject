@@ -6,6 +6,8 @@
 FILE *ifile;
 int tk;
 char str[MAXLEN];
+int state = 0;
+int depth = 0;
 int result = 5;
 
 int main(int argc, char * argv[]){
@@ -47,45 +49,175 @@ int main(int argc, char * argv[]){
 	}
 
   printf("model: ");
-  while((tk=lex(str)) != 15){
-
-    if(tk == 13){
-      printf("-");
-    } else if(tk == 11){
-      printf("(int%s)", str);
-    } else if(tk == 12){
-      printf("(real%s)", str);
-    } else if(tk == 21){
-      printf("add");
-    } else if(tk == 22){
-      printf("sub");
-    } else if(tk == 23){
-      printf("mult");
-    } else if(tk == 24){
-      printf("pow");
-    } else if(tk == 20){
-      printf("int");
-    } else if(tk == 25){
-      printf("array");
-    } else if(tk == 26){
-      printf("med");
-    } else if(tk == 27){
-      printf("mean");
-    } else if(tk == 28){
-      printf("max");
-    } else if(tk == 29){
-      printf("min");
-    } else if(tk == 30){
-      printf("bp");
-    } else if(tk == 31){
-      printf("extract");
-    } else{
-      printf("\nError: Not recognised token (%s)\n", str);
-      exit(1);
-    }
-
+  tk=lex(str);
+  if(tk == 10) {
+    printf("-");
+    state = 2;
   }
-  printf("\nModel was built successfully.\noutput: ...\n");
+  else {
+    printf("\nError: Starting dash (-) missing.\n");
+    state = 4;
+  }
+
+  while(1){
+    tk=lex(str);
+    //state 0: expecting dash(-)
+    if(state == 0) {
+      if(tk == 10){
+        printf("-");
+        state = 1;
+      }
+      else{
+        printf("\nError: Dash (-) expected\n");
+        state = 4;
+      }
+    }
+    //state 1: expecting a function
+    else if(state == 1) {
+      if(tk == 22){
+        printf("add");
+        state = 0;
+        depth++;
+
+        tk=lex(str);
+        if(tk == 12) {
+          printf("(int%s)", str);
+        }
+        else if(tk == 13) {
+          printf("(real%s)", str);
+        }
+        else {
+          printf("\nError: Numeral value expected.\n");
+          state = 4;
+        }
+      }
+      else if(tk == 23) {
+        printf("sub");
+        state = 0;
+        depth++;
+
+        tk=lex(str);
+        if(tk == 12) {
+          printf("(int%s)", str);
+        }
+        else if(tk == 13) {
+          printf("(real%s)", str);
+        }
+        else {
+          printf("\nError: Numeral value expected.\n");
+          state = 4;
+        }
+      }
+      else if(tk == 24) {
+        printf("mult");
+        state = 0;
+        depth++;
+
+        tk=lex(str);
+        if(tk == 12) {
+          printf("(int%s)", str);
+        }
+        else if(tk == 13) {
+          printf("(real%s)", str);
+        }
+        else {
+          state = 4;
+          printf("\nError: Numeral value expected.\n");
+        }
+      }
+      else if(tk == 25) {
+        printf("pow");
+        state = 0;
+        depth++;
+
+        tk=lex(str);
+        if(tk == 12) {
+          printf("(int%s)", str);
+        }
+        else if(tk == 13) {
+          printf("(real%s)", str);
+        }
+        else {
+          printf("\nError: Numeral value expected.\n");
+          state = 4;
+        }
+      }
+      else if(tk == 26) {
+        printf("med");
+        state = 0;
+        depth++;
+      }
+      else if(tk == 27) {
+        printf("mean");
+        state = 0;
+        depth++;
+      }
+      else if(tk == 28) {
+        printf("max");
+        state = 0;
+        depth++;
+      }
+      else if(tk == 29) {
+        printf("min");
+        state = 0;
+        depth++;
+      }
+      else if(tk == 30) {
+        printf("( o )");
+        state = 0;
+        depth++;
+      }
+      else if(tk == 31) {
+        printf("extract");
+        state = 0;
+        depth++;
+      }
+      //EOF
+      else if(tk == 15) {
+        state = 3;
+      }
+      else {
+        printf("\nError: Function expected.\n");
+        state = 4;
+      }
+    }
+    //state 2: expecting an input function
+    else if(state == 2) {
+      if(tk == 20) {
+        printf("num");
+        state = 0;
+        depth++;
+      }
+      else if(tk == 21) {
+        printf("array");
+        state = 0;
+        depth++;
+
+        tk=lex(str);
+        if(tk == 12) {
+          printf("%s", str);
+        }
+        else {
+          printf("\nError: Array size expected.\n");
+          state = 4;
+        }
+      }
+      else {
+        printf("\nError: Input function expected.\n");
+        state = 4;
+      }
+    }
+    //state 3: final state (success)
+    else if(state == 3) {
+      printf("\nModel was built successfully.\noutput: %d\n", result);
+      break;
+    }
+    //state 4: final state (fail)
+    else if(state == 4) {
+      printf("Failure: Abort reading.\n");
+      break;
+    }
+  }
 
   // edo tha kano ta magika
 	fclose(mfile);
