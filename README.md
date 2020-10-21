@@ -1,7 +1,5 @@
 # The **tube** Project
 
-![-tube-](./img/tube.png)
-
 **tube** is a command line project for building calculation models quickly. These models are consisted of a sequence of functions executing calculations/permutations onto a user-defined input. Each function takes as input the output of the previous function and outputs the result to the next one.
 
 ## Format
