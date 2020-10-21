@@ -203,7 +203,7 @@ int main(int argc, char * argv[]){
         }
       }
       else {
-        printf("\nError: Input-function expected.\n");
+        printf("\nError: Input function expected.\n");
         state = 4;
       }
     }
