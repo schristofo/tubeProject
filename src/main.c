@@ -3,12 +3,23 @@
 #include <string.h>
 #include "../inc/lex.h"
 
-FILE *ifile;
 int tk;
 char str[MAXLEN];
-int state = 0;
-int depth = 0;
-int result = 5;
+
+void num(char *argv1, double *x) {
+
+  FILE *ifile = fopen(argv1, "r");
+  char *ch = (char*) malloc(sizeof(char));
+
+  if(ifile == NULL){
+    printf("Error: Input file missing or corrupted.\nTry using another destination\n");
+    exit(0);
+  }
+
+  fscanf(ifile,"%lf", x);
+  fclose(ifile);
+}
+
 
 int main(int argc, char * argv[]){
 
@@ -22,24 +33,10 @@ int main(int argc, char * argv[]){
     exit(1);
   }
 
-  // ifile = fopen(argv[1], "r");
-  // if(ifile == NULL){
-  //   printf("Error: Input file missing or corrupted.\nTry using another destination\n");
-  //   exit(0);
-  // }
-	//
-  // while(1) {
-  //   *ch = fgetc(ifile);
-  //   if(isdigit(*ch) == 0) {
-  //     printf("Error: Digit expected inside the inout file\n");
-  //     continue;
-  //   }
-  //   break;
-  // }
-  // fclose(ifile);
-  // result = atoi(ch);
-  // printf("input: int%d\n", result);
-
+  double *x;  //passing argument
+  double *input;  //input register
+  int state = 0;  //model state
+  int layerNum = 0;  //model layerNum
 
 	//open model file
 	mfile = fopen(argv[2], "r");
@@ -48,7 +45,8 @@ int main(int argc, char * argv[]){
 		exit(1);
 	}
 
-  printf("model: ");
+  //start model builder
+  printf("\n> model: ");
   tk=lex(str);
   if(tk == 10) {
     printf("-");
@@ -58,7 +56,6 @@ int main(int argc, char * argv[]){
     printf("\nError: Starting dash (-) missing.\n");
     state = 4;
   }
-
   while(1){
     tk=lex(str);
     //state 0: expecting dash(-)
@@ -77,7 +74,7 @@ int main(int argc, char * argv[]){
       if(tk == 22){
         printf("add");
         state = 0;
-        depth++;
+        layerNum++;
 
         tk=lex(str);
         if(tk == 12) {
@@ -94,7 +91,7 @@ int main(int argc, char * argv[]){
       else if(tk == 23) {
         printf("sub");
         state = 0;
-        depth++;
+        layerNum++;
 
         tk=lex(str);
         if(tk == 12) {
@@ -111,7 +108,7 @@ int main(int argc, char * argv[]){
       else if(tk == 24) {
         printf("mult");
         state = 0;
-        depth++;
+        layerNum++;
 
         tk=lex(str);
         if(tk == 12) {
@@ -128,7 +125,7 @@ int main(int argc, char * argv[]){
       else if(tk == 25) {
         printf("pow");
         state = 0;
-        depth++;
+        layerNum++;
 
         tk=lex(str);
         if(tk == 12) {
@@ -145,32 +142,32 @@ int main(int argc, char * argv[]){
       else if(tk == 26) {
         printf("med");
         state = 0;
-        depth++;
+        layerNum++;
       }
       else if(tk == 27) {
         printf("mean");
         state = 0;
-        depth++;
+        layerNum++;
       }
       else if(tk == 28) {
         printf("max");
         state = 0;
-        depth++;
+        layerNum++;
       }
       else if(tk == 29) {
         printf("min");
         state = 0;
-        depth++;
+        layerNum++;
       }
       else if(tk == 30) {
         printf("( o )");
         state = 0;
-        depth++;
+        layerNum++;
       }
       else if(tk == 31) {
         printf("extract");
         state = 0;
-        depth++;
+        layerNum++;
       }
       //EOF
       else if(tk == 15) {
@@ -185,22 +182,28 @@ int main(int argc, char * argv[]){
     else if(state == 2) {
       if(tk == 20) {
         printf("num");
+        x = (double*) malloc(sizeof(double));
+        input = (double*) malloc(sizeof(double));
+        num(argv[1], x);
+        *input = *x;
+
         state = 0;
-        depth++;
+        layerNum++;
       }
       else if(tk == 21) {
         printf("array");
-        state = 0;
-        depth++;
-
         tk=lex(str);
         if(tk == 12) {
           printf("%s", str);
+          state = 0;
         }
         else {
           printf("\nError: Array size expected.\n");
           state = 4;
         }
+        // EDW THA MPEI TO ARRAY
+
+        layerNum++;
       }
       else {
         printf("\nError: Input function expected.\n");
@@ -209,7 +212,13 @@ int main(int argc, char * argv[]){
     }
     //state 3: final state (success)
     else if(state == 3) {
-      printf("\nModel was built successfully.\noutput: %d\n", result);
+      printf("\n\nModel was built successfully.\n");
+      if(layerNum != 1) printf("depth: %d layers, ", layerNum);
+      else printf("depth: 1 layer, ");
+      if(*input == (int)(*input)) printf("input: %.0lf, ", (*input));
+      else printf("input: %lf, ", (*input));
+      if(*x == (int)(*x)) printf("output: %.0lf\n", (*x));
+      else printf("output: %lf\n", (*x));
       break;
     }
     //state 4: final state (fail)
