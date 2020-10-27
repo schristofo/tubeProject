@@ -2,7 +2,6 @@
 
 **tube** is a command line project for building calculation models quickly. These models are consisted of a sequence of functions executing calculations/permutations onto a user-defined input. Each function takes as input the output of the previous function and outputs the result to the next one.
 
----
 
 ## Format
 
@@ -15,7 +14,6 @@ The format of the formulas/models is:
   Notice that every calculation is separated with dashes from the next and previous one, as well as, the whole model starts with a dash and ends with a dash.
   In *Functions* section there is an analytical documentation for each function.
 
----
 
 ## Functions
 
@@ -35,7 +33,6 @@ The format of the formulas/models is:
   - `- bp -`: breakpoint. prints the value and and passes it to the next function. (input: anything, output: input)
   - `- extract -`: extracts the value to a predefined file and passes it to the next function. (input: anything, output: input)
 
----
 
 ## Examples
 
@@ -51,7 +48,6 @@ The format of the formulas/models is:
   with input: `1 2 3 4 5 6 7 8 9 10`,
   gives output: `10+5=15`.
 
----
 
 ## Compile
 
@@ -61,7 +57,6 @@ Use the gcc compiler to compile the project. Type the following to compile:
 make
 ```
 
----
 
 ## Usage
 
@@ -74,14 +69,12 @@ cd bin
 ./tube <input-file-path> <model-file-path>
 ```
 
-to execute.
+to execute. You can use input and model samples from the following sub-directories: `./input`, `./model`
 
----
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
----
 
 ## License
 [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
