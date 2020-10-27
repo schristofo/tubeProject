@@ -44,11 +44,11 @@ The format of the formulas/models is:
   gives output: `(2+3)^2=25`.
 
 - model: `-array5-mean-mult8-`,
-  with input: `2,5,8,1,4`,
+  with input: `2 5 8 1 4`,
   gives output: `((2+5+8+1+4)/5)*8=32`.
 
 - model: `-array10-max-add5-`,
-  with input: `1,2,3,4,5,6,7,8,9,10`,
+  with input: `1 2 3 4 5 6 7 8 9 10`,
   gives output: `10+5=15`.
 
 ---
