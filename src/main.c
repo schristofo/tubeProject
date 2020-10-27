@@ -9,10 +9,8 @@ char str[MAXLEN];
 void num(char *argv1, double *x) {
 
   FILE *ifile = fopen(argv1, "r");
-  char *ch = (char*) malloc(sizeof(char));
-
   if(ifile == NULL){
-    printf("Error: Input file missing or corrupted.\nTry using another destination\n");
+    printf("\nError: Input file missing or corrupted.\nTry using another destination\n");
     exit(0);
   }
 
@@ -20,6 +18,24 @@ void num(char *argv1, double *x) {
   fclose(ifile);
 }
 
+void array(char *argv1, double *x, size_t xsize) {
+
+  FILE *ifile = fopen(argv1, "r");
+  double *num = (double*) malloc(sizeof(double));
+
+  if(ifile == NULL){
+    printf("\nError: Input file missing or corrupted.\nTry using another destination\n");
+    exit(0);
+  }
+
+  for(int i=0; i<xsize; i++) {
+    fscanf(ifile,"%lf", num);
+    *(x+i)=*num;
+  }
+
+  free(num);
+  fclose(ifile);
+}
 
 int main(int argc, char * argv[]){
 
@@ -34,6 +50,7 @@ int main(int argc, char * argv[]){
   }
 
   double *x;  //passing argument
+  size_t xsize;
   double *input;  //input register
   int state = 0;  //model state
   int layerNum = 0;  //model layerNum
@@ -182,6 +199,7 @@ int main(int argc, char * argv[]){
     else if(state == 2) {
       if(tk == 20) {
         printf("num");
+        xsize=1;
         x = (double*) malloc(sizeof(double));
         input = (double*) malloc(sizeof(double));
         num(argv[1], x);
@@ -191,18 +209,29 @@ int main(int argc, char * argv[]){
         layerNum++;
       }
       else if(tk == 21) {
+
         printf("array");
+
+        //array size
         tk=lex(str);
         if(tk == 12) {
           printf("%s", str);
-          state = 0;
+          xsize=(size_t)atoi(str);
         }
         else {
           printf("\nError: Array size expected.\n");
           state = 4;
         }
-        // EDW THA MPEI TO ARRAY
 
+        // import array
+        x = (double*) malloc(xsize*sizeof(double));
+        input = (double*) malloc(xsize*sizeof(double));
+        array(argv[1], x, xsize);
+        for(int i=0; i<xsize; i++) {
+          *(input+i)=*(x+i);
+        }
+
+        state = 0;
         layerNum++;
       }
       else {
@@ -213,12 +242,9 @@ int main(int argc, char * argv[]){
     //state 3: final state (success)
     else if(state == 3) {
       printf("\n\nModel was built successfully.\n");
-      if(layerNum != 1) printf("depth: %d layers, ", layerNum);
-      else printf("depth: 1 layer, ");
-      if(*input == (int)(*input)) printf("input: %.0lf, ", (*input));
-      else printf("input: %lf, ", (*input));
-      if(*x == (int)(*x)) printf("output: %.0lf\n", (*x));
-      else printf("output: %lf\n", (*x));
+      if(layerNum != 1) printf("depth: %d layers\n", layerNum);
+      else printf("depth: 1 layer\n");
+      //TO DO: print input, print output
       break;
     }
     //state 4: final state (fail)
@@ -229,6 +255,8 @@ int main(int argc, char * argv[]){
   }
 
   // edo tha kano ta magika
+  free(x);
+  free(input);
 	fclose(mfile);
 	return 0;
 }

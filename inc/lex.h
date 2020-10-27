@@ -11,9 +11,9 @@ FILE *mfile;
 #define MAXLEN 10
 
 #define DASHTK 10
-#define E1 11
-#define E2 12
-#define E3 13
+#define E1 11 //function
+#define E2 12 //integer
+#define E3 13 //real
 #define NATK 14
 #define EOFTK 15
 
