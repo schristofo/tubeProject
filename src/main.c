@@ -2,40 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../inc/lex.h"
+#include "../inc/utils.h"
+
 
 int tk;
 char str[MAXLEN];
 
-void num(char *argv1, double *x) {
-
-  FILE *ifile = fopen(argv1, "r");
-  if(ifile == NULL){
-    printf("\nError: Input file missing or corrupted.\nTry using another destination\n");
-    exit(0);
-  }
-
-  fscanf(ifile,"%lf", x);
-  fclose(ifile);
-}
-
-void array(char *argv1, double *x, size_t xsize) {
-
-  FILE *ifile = fopen(argv1, "r");
-  double *num = (double*) malloc(sizeof(double));
-
-  if(ifile == NULL){
-    printf("\nError: Input file missing or corrupted.\nTry using another destination\n");
-    exit(0);
-  }
-
-  for(int i=0; i<xsize; i++) {
-    fscanf(ifile,"%lf", num);
-    *(x+i)=*num;
-  }
-
-  free(num);
-  fclose(ifile);
-}
 
 int main(int argc, char * argv[]){
 
@@ -58,7 +30,7 @@ int main(int argc, char * argv[]){
 	//open model file
 	mfile = fopen(argv[2], "r");
 	if(mfile == NULL){
-		printf("Error: Model file missing or corrupted.\nTry using another destination\n");
+		printf("Error: Model file missing or corrupted.\nTry using a different path.\n");
 		exit(1);
 	}
 
