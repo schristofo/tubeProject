@@ -34,6 +34,5 @@ void array(char *argv1, double *x, size_t xsize) {
 void add(double *x, size_t xsize, double b) {
   for(size_t i=0; i<xsize; i++) {
     *(x+i) = *(x+i) + b;
-    printf("\n%lf", *(x+i));
   }
 }
