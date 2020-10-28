@@ -1,5 +1,24 @@
 #include "../inc/utils.h"
 
+void swap(double *p,double *q) {
+   double t;
+
+   t=*p;
+   *p=*q;
+   *q=t;
+}
+
+void sort(double *x, size_t xsize) {
+   int i,j;
+
+   for(i = 0;i < xsize-1;i++) {
+      for(j = 0;j < xsize-i-1;j++) {
+         if(x[j] > x[j+1])
+            swap(&x[j],&x[j+1]);
+      }
+   }
+}
+
 void num(char *argv1, double *x) {
 
   FILE *ifile = fopen(argv1, "r");
@@ -53,4 +72,24 @@ void power(double *x, size_t xsize, double b) {
   for(size_t i=0; i<xsize; i++) {
     *(x+i) = pow(*(x+i), b);
   }
+}
+
+void mean(double *x, size_t *xsize) {
+  double t;
+  for(size_t i=0; i<*xsize; i++){
+    t += *(x+i);
+  }
+  t = t / *xsize;
+  *x = t;
+  *xsize = 1;
+}
+
+void med(double *x, size_t *xsize) {
+  double t;
+  size_t n = (*xsize+1)/2-1;
+  sort(x, *xsize);
+
+  t = *(x+n);
+  *x = t;
+  *xsize = 1;
 }

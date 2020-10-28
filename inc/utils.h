@@ -14,5 +14,7 @@ void add(double *x, size_t xsize, double b);
 void sub(double *x, size_t xsize, double b);
 void mult(double *x, size_t xsize, double b);
 void power(double *x, size_t xsize, double b);
+void mean(double *x, size_t *xsize);
+void med(double *x, size_t *xsize);
 
 #endif

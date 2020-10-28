@@ -24,6 +24,7 @@ int main(int argc, char * argv[]) {
   double *x;  //passing argument
   size_t xsize;
   double *input;  //input register
+  size_t inputsize;
   int state = 0;  //model state
   int layerNum = 0;  //model layerNum
   double d;
@@ -147,11 +148,15 @@ int main(int argc, char * argv[]) {
       }
       else if(tk == 26) {
         printf("med");
+        med(x, &xsize);
+        x = (double*) realloc(x, 1);
         state = 0;
         layerNum++;
       }
       else if(tk == 27) {
         printf("mean");
+        mean(x, &xsize);
+        x = (double*) realloc(x, 1);
         state = 0;
         layerNum++;
       }
@@ -189,6 +194,7 @@ int main(int argc, char * argv[]) {
       if(tk == 20) {
         printf("num");
         xsize=1;
+        inputsize=1;
         x = (double*) malloc(sizeof(double));
         input = (double*) malloc(sizeof(double));
         num(argv[1], x);
@@ -206,6 +212,7 @@ int main(int argc, char * argv[]) {
         if(tk == 12) {
           printf("%s", str);
           xsize=(size_t)atoi(str);
+          inputsize=xsize;
         }
         else {
           printf("\n\nError: Array size expected.\n");
@@ -233,18 +240,27 @@ int main(int argc, char * argv[]) {
       printf("\n\nModel was built successfully.\n");
 
       //print depth
-      if(layerNum != 1) printf("depth: %d layers\n", layerNum);
-      else printf("depth: 1 layer\n");
+      if(layerNum != 1) printf(" . depth: %d layers\n", layerNum);
+      else printf(" . depth: 1 layer\n");
 
-      //TO DO: print input
+      //print input
+      if(inputsize != 1) {
+        printf(" . input: [ %g", *input);
+        for (size_t i=1; i<inputsize; i++) printf(", %g", *(input+i));
+        printf(" ]\n");
+      }
+      else {
+        printf(" . input: %g\n", *input);
+      }
+
       //print output
       if(xsize != 1) {
-        printf("output: [ %g", *x);
+        printf(" . output: [ %g", *x);
         for (size_t i=1; i<xsize; i++) printf(", %g", *(x+i));
         printf(" ]\n");
       }
       else {
-        printf("output: %g\n", *x);
+        printf(" . output: %g\n", *x);
       }
 
       free(x);
