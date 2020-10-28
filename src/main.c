@@ -9,7 +9,7 @@ int tk;
 char str[MAXLEN];
 
 
-int main(int argc, char * argv[]){
+int main(int argc, char * argv[]) {
 
   //passing destination path correctly
   if( argc > 3 ) {
@@ -62,11 +62,9 @@ int main(int argc, char * argv[]){
     else if(state == 1) {
       if(tk == 22){
         printf("add");
-        state = 0;
-        layerNum++;
 
         tk=lex(str);
-        if(tk == 12) {
+        if(tk == 12){
           printf("(int%s)", str);
         }
         else if(tk == 13) {
@@ -75,7 +73,14 @@ int main(int argc, char * argv[]){
         else {
           printf("\nError: Numeral value expected.\n");
           state = 4;
+          continue;
         }
+        double d;
+        sscanf(str, "%lf", &d);
+        add(x, xsize, d);
+
+        state = 0;
+        layerNum++;
       }
       else if(tk == 23) {
         printf("sub");
@@ -193,8 +198,8 @@ int main(int argc, char * argv[]){
         else {
           printf("\nError: Array size expected.\n");
           state = 4;
+          continue;
         }
-
         // import array
         x = (double*) malloc(xsize*sizeof(double));
         input = (double*) malloc(xsize*sizeof(double));
@@ -217,6 +222,8 @@ int main(int argc, char * argv[]){
       if(layerNum != 1) printf("depth: %d layers\n", layerNum);
       else printf("depth: 1 layer\n");
       //TO DO: print input, print output
+      free(x);
+      free(input);
       break;
     }
     //state 4: final state (fail)
@@ -227,8 +234,6 @@ int main(int argc, char * argv[]){
   }
 
   // edo tha kano ta magika
-  free(x);
-  free(input);
 	fclose(mfile);
 	return 0;
 }

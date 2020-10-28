@@ -22,11 +22,18 @@ void array(char *argv1, double *x, size_t xsize) {
     exit(0);
   }
 
-  for(int i=0; i<xsize; i++) {
+  for(size_t i=0; i<xsize; i++) {
     fscanf(ifile,"%lf", num);
     *(x+i)=*num;
   }
 
   free(num);
   fclose(ifile);
+}
+
+void add(double *x, size_t xsize, double b) {
+  for(size_t i=0; i<xsize; i++) {
+    *(x+i) = *(x+i) + b;
+    printf("\n%lf", *(x+i));
+  }
 }

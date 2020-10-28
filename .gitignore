@@ -2,3 +2,4 @@ tube
 lex.o
 utils.o
 main.o
+test.txt
