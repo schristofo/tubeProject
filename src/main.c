@@ -42,7 +42,7 @@ int main(int argc, char * argv[]) {
     state = 2;
   }
   else {
-    printf("\nError: Starting dash (-) missing.\n");
+    printf("\n\nError: Starting dash (-) missing.\n");
     state = 4;
   }
   while(1){
@@ -54,7 +54,7 @@ int main(int argc, char * argv[]) {
         state = 1;
       }
       else{
-        printf("\nError: Dash (-) expected\n");
+        printf("\n\nError: Dash (-) expected\n");
         state = 4;
       }
     }
@@ -71,7 +71,7 @@ int main(int argc, char * argv[]) {
           printf("(real%s)", str);
         }
         else {
-          printf("\nError: Numeral value expected.\n");
+          printf("\n\nError: Numeral value expected.\n");
           state = 4;
           continue;
         }
@@ -95,7 +95,7 @@ int main(int argc, char * argv[]) {
           printf("(real%s)", str);
         }
         else {
-          printf("\nError: Numeral value expected.\n");
+          printf("\n\nError: Numeral value expected.\n");
           state = 4;
         }
       }
@@ -113,7 +113,7 @@ int main(int argc, char * argv[]) {
         }
         else {
           state = 4;
-          printf("\nError: Numeral value expected.\n");
+          printf("\n\nError: Numeral value expected.\n");
         }
       }
       else if(tk == 25) {
@@ -129,7 +129,7 @@ int main(int argc, char * argv[]) {
           printf("(real%s)", str);
         }
         else {
-          printf("\nError: Numeral value expected.\n");
+          printf("\n\nError: Numeral value expected.\n");
           state = 4;
         }
       }
@@ -168,7 +168,7 @@ int main(int argc, char * argv[]) {
         state = 3;
       }
       else {
-        printf("\nError: Function expected.\n");
+        printf("\n\nError: Function expected.\n");
         state = 4;
       }
     }
@@ -196,7 +196,7 @@ int main(int argc, char * argv[]) {
           xsize=(size_t)atoi(str);
         }
         else {
-          printf("\nError: Array size expected.\n");
+          printf("\n\nError: Array size expected.\n");
           state = 4;
           continue;
         }
@@ -212,7 +212,7 @@ int main(int argc, char * argv[]) {
         layerNum++;
       }
       else {
-        printf("\nError: Input function expected.\n");
+        printf("\n\nError: Input function expected.\n");
         state = 4;
       }
     }

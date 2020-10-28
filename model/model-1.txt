@@ -1,1 +1,1 @@
-- array365 - sub32 - mult0.5555 - bp - max - extract -
+- num-mean - add 5 - mult 0.559 - 
