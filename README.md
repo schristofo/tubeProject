@@ -20,8 +20,8 @@ The format of the formulas/models is:
 ## Functions
 
 - #### input-functions ####
-  - `- num -`: specifies that the input is a number
-  - `- array<num> -`: specifies that the input is an array with <num> positions
+  - `num`: specifies that the input is a number
+  - `array<num>`: specifies that the input is an array with <num> positions
 
 - #### functions ####
   - `add<num>`: adds `<num>` to the input. (input: num/array, output: num)
