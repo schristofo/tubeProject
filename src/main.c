@@ -26,6 +26,7 @@ int main(int argc, char * argv[]) {
   double *input;  //input register
   int state = 0;  //model state
   int layerNum = 0;  //model layerNum
+  double d;
 
 	//open model file
 	mfile = fopen(argv[2], "r");
@@ -75,7 +76,6 @@ int main(int argc, char * argv[]) {
           state = 4;
           continue;
         }
-        double d;
         sscanf(str, "%lf", &d);
         add(x, xsize, d);
 
@@ -84,8 +84,6 @@ int main(int argc, char * argv[]) {
       }
       else if(tk == 23) {
         printf("sub");
-        state = 0;
-        layerNum++;
 
         tk=lex(str);
         if(tk == 12) {
@@ -97,12 +95,16 @@ int main(int argc, char * argv[]) {
         else {
           printf("\n\nError: Numeral value expected.\n");
           state = 4;
+          continue;
         }
+        sscanf(str, "%lf", &d);
+        sub(x, xsize, d);
+
+        state = 0;
+        layerNum++;
       }
       else if(tk == 24) {
         printf("mult");
-        state = 0;
-        layerNum++;
 
         tk=lex(str);
         if(tk == 12) {
@@ -114,12 +116,16 @@ int main(int argc, char * argv[]) {
         else {
           state = 4;
           printf("\n\nError: Numeral value expected.\n");
+          continue;
         }
+        sscanf(str, "%lf", &d);
+        mult(x, xsize, d);
+
+        state = 0;
+        layerNum++;
       }
       else if(tk == 25) {
         printf("pow");
-        state = 0;
-        layerNum++;
 
         tk=lex(str);
         if(tk == 12) {
@@ -131,7 +137,13 @@ int main(int argc, char * argv[]) {
         else {
           printf("\n\nError: Numeral value expected.\n");
           state = 4;
+          continue;
         }
+        sscanf(str, "%lf", &d);
+        power(x, xsize, d);
+
+        state = 0;
+        layerNum++;
       }
       else if(tk == 26) {
         printf("med");

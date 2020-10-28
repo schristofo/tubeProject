@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 //input functions
 void num(char *argv1, double *x);
@@ -10,5 +11,8 @@ void array(char *argv1, double *x, size_t xsize);
 
 //transforming functions
 void add(double *x, size_t xsize, double b);
+void sub(double *x, size_t xsize, double b);
+void mult(double *x, size_t xsize, double b);
+void power(double *x, size_t xsize, double b);
 
 #endif

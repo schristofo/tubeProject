@@ -1,5 +1,5 @@
 CC=gcc
-DFLAGS=
+DFLAGS=-lm
 SDIR=./src
 ODIR=./obj
 BDIR=./bin
@@ -10,7 +10,7 @@ $(BDIR)/tube: $(ODIR)/main.o $(ODIR)/lex.o $(ODIR)/utils.o
 	$(CC) -o $@ $^ $(DFLAGS)
 
 $(ODIR)/%.o: $(SDIR)/%.c
-	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $^
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $^ $(DFLAGS)
 
 clean:
 	rm $(BDIR)/tube; rm $(ODIR)/*.o

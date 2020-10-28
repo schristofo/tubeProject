@@ -36,3 +36,21 @@ void add(double *x, size_t xsize, double b) {
     *(x+i) = *(x+i) + b;
   }
 }
+
+void sub(double *x, size_t xsize, double b) {
+  for(size_t i=0; i<xsize; i++) {
+    *(x+i) = *(x+i) - b;
+  }
+}
+
+void mult(double *x, size_t xsize, double b) {
+  for(size_t i=0; i<xsize; i++) {
+    *(x+i) = *(x+i) * b;
+  }
+}
+
+void power(double *x, size_t xsize, double b) {
+  for(size_t i=0; i<xsize; i++) {
+    *(x+i) = pow(*(x+i), b);
+  }
+}
