@@ -219,9 +219,22 @@ int main(int argc, char * argv[]) {
     //state 3: final state (success)
     else if(state == 3) {
       printf("\n\nModel was built successfully.\n");
+
+      //print depth
       if(layerNum != 1) printf("depth: %d layers\n", layerNum);
       else printf("depth: 1 layer\n");
-      //TO DO: print input, print output
+
+      //TO DO: print input
+      //print output
+      if(xsize != 1) {
+        printf("output: [ %g", *x);
+        for (size_t i=1; i<xsize; i++) printf(", %g", *(x+i));
+        printf(" ]\n");
+      }
+      else {
+        printf("output: %g\n", *x);
+      }
+
       free(x);
       free(input);
       break;
