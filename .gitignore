@@ -1,4 +1,5 @@
 tube
+tube.exe
 lex.o
 utils.o
 main.o
