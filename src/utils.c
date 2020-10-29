@@ -64,7 +64,7 @@ void power(double *x, size_t xsize, double b) {
 }
 
 void mean(double *x, size_t *xsize) {
-  double t;
+  double t = 0;
   for(size_t i=0; i<*xsize; i++){
     t += *(x+i);
   }
@@ -82,7 +82,7 @@ void med(double *x, size_t *xsize) {
 }
 
 void sort(double *x, size_t xsize) {
-   int i,j;
+   size_t i,j;
 
    for(i = 0;i < xsize-1;i++) {
       for(j = 0;j < xsize-i-1;j++) {
