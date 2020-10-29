@@ -58,10 +58,26 @@ Here is an example of finding a week's average temperature in Celsius and conver
 
 Use the gcc compiler to compile the project. Type the following to compile:
 
-```bash
-make
-```
+- *Linux*: 
+`make` to compile, and:
+`make clean` to clean.
 
+- *Windows*:
+```bash
+gcc -c -o ./obj/main.o -c ./src/main.c
+gcc -c -o ./obj/lex.o -c ./src/lex.c
+gcc -c -o ./obj/utils.o -c ./src/utils.c -lm
+
+gcc -o ./bin/tube ./obj/main.o ./obj/utils.o ./obj/lex.o
+```
+to compile, and:
+```bash
+rm ./bin/tube
+rm obj/main.o
+rm obj/lex.o
+rm obj/utils.o
+```
+to clean.
 
 ## Usage
 
