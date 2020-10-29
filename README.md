@@ -53,7 +53,7 @@ The format of the formulas/models is:
   gives output: `10+5=15`.
 
 Here is an example of finding a week's average temperature in Celsius and converting it to Fahrenheit:
-![model screenshot](./img/screen.png)
+![model screenshot](./img/screenshot.png)
 
 ## Compile
 
