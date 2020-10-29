@@ -32,8 +32,8 @@ The format of the formulas/models is:
   - `mean`: outputs the mean value of an input array. (input: array, output: num)
   - `max`: outputs the maximum value of an input array. (input: array, output: num)
   - `min`: outputs the minimum value of an input array. (input: array, output: num)
-  - `bp`: breakpoint. prints the value and and passes it to the next function. (input: anything, output: input)
-  - `extract`: extracts the value to a predefined file and passes it to the next function. (input: anything, output: input)
+  - `bp`: breakpoint. prints the value and and passes it to the next function. (input: anything, output: inp)
+  - `extract`: extracts the input to an output file and passes it to the next function. (input: anything, output: inp)
   - `sort`: sorts a given array. (input: array, output: num)
   - `idx<num>`: outputs the `<num>`th element of a given array. (input: array, output: num)
 
