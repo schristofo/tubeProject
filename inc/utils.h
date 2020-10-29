@@ -16,5 +16,7 @@ void mult(double *x, size_t xsize, double b);
 void power(double *x, size_t xsize, double b);
 void mean(double *x, size_t *xsize);
 void med(double *x, size_t *xsize);
+void sort(double *x, size_t xsize);
+void idx(double *x, size_t *xsize, size_t d);
 
 #endif

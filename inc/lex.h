@@ -29,6 +29,8 @@ FILE *mfile;
 #define MINTK 29
 #define BPTK 30
 #define EXTRACTTK 31
+#define SORTTK 32
+#define IDXTK 33
 
 int lex(char token[MAXLEN]);
 

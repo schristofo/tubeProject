@@ -8,17 +8,6 @@ void swap(double *p,double *q) {
    *q=t;
 }
 
-void sort(double *x, size_t xsize) {
-   int i,j;
-
-   for(i = 0;i < xsize-1;i++) {
-      for(j = 0;j < xsize-i-1;j++) {
-         if(x[j] > x[j+1])
-            swap(&x[j],&x[j+1]);
-      }
-   }
-}
-
 void num(char *argv1, double *x) {
 
   FILE *ifile = fopen(argv1, "r");
@@ -85,11 +74,25 @@ void mean(double *x, size_t *xsize) {
 }
 
 void med(double *x, size_t *xsize) {
-  double t;
   size_t n = (*xsize+1)/2-1;
   sort(x, *xsize);
 
-  t = *(x+n);
-  *x = t;
+  *x = *(x+n);
+  *xsize = 1;
+}
+
+void sort(double *x, size_t xsize) {
+   int i,j;
+
+   for(i = 0;i < xsize-1;i++) {
+      for(j = 0;j < xsize-i-1;j++) {
+         if(x[j] > x[j+1])
+            swap(&x[j],&x[j+1]);
+      }
+   }
+}
+
+void idx(double *x, size_t *xsize, size_t d) {
+  *x = *(x+d);
   *xsize = 1;
 }

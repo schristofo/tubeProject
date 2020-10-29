@@ -34,6 +34,8 @@ The format of the formulas/models is:
   - `min`: outputs the minimum value of an input array. (input: array, output: num)
   - `bp`: breakpoint. prints the value and and passes it to the next function. (input: anything, output: input)
   - `extract`: extracts the value to a predefined file and passes it to the next function. (input: anything, output: input)
+  - `sort`: sorts a given array. (input: array, output: num)
+  - `idx<num>`: outputs the `<num>`th element of a given array. (input: array, output: num)
 
 
 ## Examples
@@ -42,9 +44,9 @@ The format of the formulas/models is:
   with input: `2`,
   gives output: `(2+3)^2=25`.
 
-- model: `-array5-mean-mult8-`,
+- model: `-array5-sort-idx1-`,
   with input: `2 5 8 1 4`,
-  gives output: `((2+5+8+1+4)/5)*8=32`.
+  gives output: `2`.
 
 - model: `-array10-max-add5-`,
   with input: `1 2 3 4 5 6 7 8 9 10`,

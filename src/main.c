@@ -148,15 +148,31 @@ int main(int argc, char * argv[]) {
       }
       else if(tk == 26) {
         printf("med");
-        med(x, &xsize);
-        x = (double*) realloc(x, 1);
+
+        if(xsize != 1) {
+          med(x, &xsize);
+          x = (double*) realloc(x, 1);
+        }
+        else {
+          printf("\n\nError: (med) expected array as input.\n");
+          state = 4;
+          continue;
+        }
         state = 0;
         layerNum++;
       }
       else if(tk == 27) {
         printf("mean");
-        mean(x, &xsize);
-        x = (double*) realloc(x, 1);
+
+        if(xsize != 1) {
+          mean(x, &xsize);
+          x = (double*) realloc(x, 1);
+        }
+        else {
+          printf("\n\nError: (mean) expected array as input.\n");
+          state = 4;
+          continue;
+        }
         state = 0;
         layerNum++;
       }
@@ -177,6 +193,56 @@ int main(int argc, char * argv[]) {
       }
       else if(tk == 31) {
         printf("extract");
+        state = 0;
+        layerNum++;
+      }
+      else if(tk == 32) {
+        printf("sort");
+
+        if(xsize != 1) {
+          sort(x, xsize);
+        }
+        else {
+          printf("\n\nError: (sort) expected array as input.\n");
+          state = 4;
+          continue;
+        }
+
+        state = 0;
+        layerNum++;
+      }
+      else if(tk == 33) {
+        printf("idx");
+
+        //works only for arrays
+        if(xsize != 1) {
+          tk=lex(str);
+
+          //check if idx number is integer
+          if(tk == 12) {
+            printf("%s", str);
+          }
+          else {
+            printf("\n\nError: Index number expected.\n");
+            state = 4;
+            continue;
+          }
+        }
+        else {
+          printf("\n\nError: (idx) expected array as input.\n");
+          state = 4;
+          continue;
+        }
+
+        size_t id = atoi(str);
+        if(id < 0 || id > xsize-1) {
+          printf("\n\nError: Index number out of bounds.\n");
+          state = 4;
+          continue;
+        }
+        idx(x, &xsize, id);
+        x = (double*) realloc(x, 1);
+
         state = 0;
         layerNum++;
       }

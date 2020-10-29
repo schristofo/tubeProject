@@ -64,6 +64,8 @@ int lex(char token[MAXLEN])
 		if(strcmp(token,"min")==0) return MINTK;
 		if(strcmp(token,"bp")==0) return BPTK;
 		if(strcmp(token,"extract")==0) return EXTRACTTK;
+		if(strcmp(token,"sort")==0) return SORTTK;
+		if(strcmp(token,"idx")==0) return IDXTK;
 	}
 	else if(state==E2){ //int
 		return E2;
