@@ -52,6 +52,8 @@ The format of the formulas/models is:
   with input: `1 2 3 4 5 6 7 8 9 10`,
   gives output: `10+5=15`.
 
+Here is an example of finding a week's average temperature in Celsius and converting it to Fahrenheit:
+![model screenshot](./img/screen.png)
 
 ## Compile
 
@@ -73,7 +75,8 @@ cd bin
 ./tube <input-file-path> <model-file-path>
 ```
 
-to execute. You can use input and model samples from the following sub-directories: `./input`, `./model`
+to execute. You can use input and model samples from the `./input`, `./model` sub-directories,
+or you can create and use your own models.
 
 
 ## Contributing
