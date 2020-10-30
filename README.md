@@ -3,7 +3,7 @@
 
 **tube** is a command line project for building calculation models quickly. These models are consisted of a sequence of functions executing calculations/permutations onto a user-defined input. Each function takes as input the output of the previous function and outputs the result to the next one.
 
-<img src="./img/tubes.png" alt="blender tubes" style="display: block; margin-left:auto; margin-right:auto; margin-top:30px; margin-bottom:30px; width:99%; border-radius:10px;">
+<img src="./img/tubes.png" alt="blender tubes" style="display: block; margin-left:auto; margin-right:auto; margin-top:30px; margin-bottom:30px; width:99%; border-radius:10px;">  
 
 
 ## Format
@@ -14,7 +14,25 @@ The format of the formulas/models is:
 - `<input-function>` is a function reading and converting the `<input-file>` into the appropriate form.  
 - `<function>` can be a function executing a calculation/permutation.
 
-Notice that every calculation is separated with dashes from the next and previous one, as well as, the whole model starts with a dash and ends with a dash. You can find analytical documentation for each function in [Functions](#functions) section.
+Notice that every calculation is separated with dashes from the next and previous one, as well as, the whole model starts with a dash and ends with a dash. You can find analytical documentation for each function in [Functions](#functions) section.  
+
+## Examples
+
+- model: `-num-add3-pow2-`,
+  with input: `2`,
+  gives output: `(2+3)^2=25`.
+
+- model: `-array5-sort-idx1-`,
+  with input: `2 5 8 1 4`,
+  gives output: `2`.
+
+- model: `-array10-max-add5-`,
+  with input: `1 2 3 4 5 6 7 8 9 10`,
+  gives output: `10+5=15`.
+
+Here is an example of finding a week's average temperature in Celsius and converting it to Fahrenheit:
+
+<img src="./img/screenshot.png" alt="model screenshot" style="display: block; margin-left:auto; margin-right:auto; margin-top:30px; margin-bottom:30px; width:99%; border-radius:10px;">
 
 
 ## Functions
@@ -37,26 +55,6 @@ Notice that every calculation is separated with dashes from the next and previou
   - `sort`: sorts a given array. (input: array, output: num)
   - `idx<num>`: outputs the `<num>`th element of a given array. (input: array, output: num)
 
-
-## Examples
-
-
-
-- model: `-num-add3-pow2-`,
-  with input: `2`,
-  gives output: `(2+3)^2=25`.
-
-- model: `-array5-sort-idx1-`,
-  with input: `2 5 8 1 4`,
-  gives output: `2`.
-
-- model: `-array10-max-add5-`,
-  with input: `1 2 3 4 5 6 7 8 9 10`,
-  gives output: `10+5=15`.
-
-Here is an example of finding a week's average temperature in Celsius and converting it to Fahrenheit:
-
-<img src="./img/screenshot.png" alt="model screenshot" style="display: block; margin-left:auto; margin-right:auto; margin-top:30px; margin-bottom:30px; width:99%; border-radius:10px;">
 
 ## Compile
 
