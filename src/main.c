@@ -51,7 +51,7 @@ int main(int argc, char * argv[]) {
     tk=lex(str);
     //state 0: expecting dash(-)
     if(state == 0) {
-      if(tk == 10){
+      if(tk == DASHTK){
         printf("-");
         state = 1;
       }
@@ -62,14 +62,14 @@ int main(int argc, char * argv[]) {
     }
     //state 1: expecting a function
     else if(state == 1) {
-      if(tk == 22){
+      if(tk == ADDTK){
         printf("add");
 
         tk=lex(str);
-        if(tk == 12){
+        if(tk == E2){
           printf("(int%s)", str);
         }
-        else if(tk == 13) {
+        else if(tk == E3) {
           printf("(real%s)", str);
         }
         else {
@@ -83,14 +83,14 @@ int main(int argc, char * argv[]) {
         state = 0;
         layerNum++;
       }
-      else if(tk == 23) {
+      else if(tk == SUBTK) {
         printf("sub");
 
         tk=lex(str);
-        if(tk == 12) {
+        if(tk == E2) {
           printf("(int%s)", str);
         }
-        else if(tk == 13) {
+        else if(tk == E3) {
           printf("(real%s)", str);
         }
         else {
@@ -104,14 +104,14 @@ int main(int argc, char * argv[]) {
         state = 0;
         layerNum++;
       }
-      else if(tk == 24) {
+      else if(tk == MULTTK) {
         printf("mult");
 
         tk=lex(str);
-        if(tk == 12) {
+        if(tk == E2) {
           printf("(int%s)", str);
         }
-        else if(tk == 13) {
+        else if(tk == E3) {
           printf("(real%s)", str);
         }
         else {
@@ -125,14 +125,14 @@ int main(int argc, char * argv[]) {
         state = 0;
         layerNum++;
       }
-      else if(tk == 25) {
+      else if(tk == POWTK) {
         printf("pow");
 
         tk=lex(str);
-        if(tk == 12) {
+        if(tk == E2) {
           printf("(int%s)", str);
         }
-        else if(tk == 13) {
+        else if(tk == E3) {
           printf("(real%s)", str);
         }
         else {
@@ -146,7 +146,7 @@ int main(int argc, char * argv[]) {
         state = 0;
         layerNum++;
       }
-      else if(tk == 26) {
+      else if(tk == MEDTK) {
         printf("med");
 
         if(xsize != 1) {
@@ -161,7 +161,7 @@ int main(int argc, char * argv[]) {
         state = 0;
         layerNum++;
       }
-      else if(tk == 27) {
+      else if(tk == MEANTK) {
         printf("mean");
 
         if(xsize != 1) {
@@ -176,27 +176,47 @@ int main(int argc, char * argv[]) {
         state = 0;
         layerNum++;
       }
-      else if(tk == 28) {
+      else if(tk == MAXTK) {
         printf("max");
+
+        if(xsize != 1) {
+          max(x, &xsize);
+          x = (double*) realloc(x, 1);
+        }
+        else {
+          printf("\n\nError: (max) expected array as input.\n");
+          state = 4;
+          continue;
+        }
         state = 0;
         layerNum++;
       }
-      else if(tk == 29) {
+      else if(tk == MINTK) {
         printf("min");
+
+        if(xsize != 1) {
+          min(x, &xsize);
+          x = (double*) realloc(x, 1);
+        }
+        else {
+          printf("\n\nError: (max) expected array as input.\n");
+          state = 4;
+          continue;
+        }
         state = 0;
         layerNum++;
       }
-      else if(tk == 30) {
+      else if(tk == BPTK) {
         printf("( o )");
         state = 0;
         layerNum++;
       }
-      else if(tk == 31) {
+      else if(tk == EXTRACTTK) {
         printf("extract");
         state = 0;
         layerNum++;
       }
-      else if(tk == 32) {
+      else if(tk == SORTTK) {
         printf("sort");
 
         if(xsize != 1) {
@@ -211,7 +231,7 @@ int main(int argc, char * argv[]) {
         state = 0;
         layerNum++;
       }
-      else if(tk == 33) {
+      else if(tk == IDXTK) {
         printf("idx");
 
         //works only for arrays
@@ -219,7 +239,7 @@ int main(int argc, char * argv[]) {
           tk=lex(str);
 
           //check if idx number is integer
-          if(tk == 12) {
+          if(tk == E2) {
             printf("%s", str);
           }
           else {
@@ -247,7 +267,7 @@ int main(int argc, char * argv[]) {
         layerNum++;
       }
       //EOF
-      else if(tk == 15) {
+      else if(tk == EOFTK) {
         state = 3;
       }
       else {
@@ -257,7 +277,7 @@ int main(int argc, char * argv[]) {
     }
     //state 2: expecting an input function
     else if(state == 2) {
-      if(tk == 20) {
+      if(tk == NUMTK) {
         printf("num");
         xsize=1;
         inputsize=1;
@@ -269,13 +289,13 @@ int main(int argc, char * argv[]) {
         state = 0;
         layerNum++;
       }
-      else if(tk == 21) {
+      else if(tk == ARRAYTK) {
 
         printf("array");
 
         //array size
         tk=lex(str);
-        if(tk == 12) {
+        if(tk == E2) {
           printf("%s", str);
           xsize=(size_t)atoi(str);
           inputsize=xsize;

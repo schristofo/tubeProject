@@ -81,6 +81,30 @@ void med(double *x, size_t *xsize) {
   *xsize = 1;
 }
 
+void max(double *x, size_t *xsize) {
+  double max = *x;
+
+  for(size_t i=1; i<*xsize; i++) {
+    if(*(x+i) > max) {
+      max = *(x+i);
+    }
+  }
+  *x = max;
+  *xsize = 1;
+}
+
+void min(double *x, size_t *xsize) {
+  double min = *x;
+
+  for(size_t i=1; i<*xsize; i++) {
+    if(*(x+i) < min) {
+      min = *(x+i);
+    }
+  }
+  *x = min;
+  *xsize = 1;
+}
+
 void sort(double *x, size_t xsize) {
    size_t i,j;
 
