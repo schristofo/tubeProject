@@ -1,4 +1,4 @@
-#include "../inc/lex.h"
+#include "lex.h"
 
 int lex(char token[MAXLEN])
 {

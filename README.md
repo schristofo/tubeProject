@@ -58,7 +58,7 @@ Here is an example of finding a week's average temperature in Celsius and conver
 
 ## Compile
 
-Use the gcc compiler to compile the project. Depending on your operating system, type the following to compile:
+Download and use the gcc compiler to compile the project. Depending on your operating system, type the following to compile:
 
 #### Linux:
 ```bash
@@ -72,23 +72,23 @@ to clean.
 
 #### Windows:
 ```bash
-gcc -c -o ./obj/main.o -c ./src/main.c
-gcc -c -o ./obj/lex.o -c ./src/lex.c
-gcc -c -o ./obj/utils.o -c ./src/utils.c -lm
-gcc -o ./bin/tube ./obj/main.o ./obj/utils.o ./obj/lex.o
+gcc -o bin/main.o -c src/main.c
+gcc -o bin/lex.o -c src/lex.c
+gcc -o bin/tube.o -c src/tube.c
+gcc -o bin/utils.o -c src/utils.c -lm
+gcc -o bin/tube bin/main.o bin/tube.o bin/lex.o bin/utils.o -lm
 ```
 to compile, and:
 ```bash
-rm ./bin/tube
-rm obj/main.o
-rm obj/lex.o
-rm obj/utils.o
+del -f bin/tube
+del -f bin/main.o
+del -f bin/lex.o
+del -f bin/utils.o
 ```
 to clean.
 
 ## Usage
 
-#### Linux:
 ```bash
 ./bin/tube <input-file-path> <model-file-path>
 ```
@@ -98,7 +98,6 @@ cd bin
 ./tube <input-file-path> <model-file-path>
 ```
 
-
 to execute. You can use input and model samples from the `./input`, `./model` sub-directories,
 or you can create and use your own models.
 
@@ -106,7 +105,6 @@ or you can create and use your own models.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
 
 ## License
 [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)

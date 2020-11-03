@@ -2,16 +2,14 @@ CC=gcc
 CFLAGS= -std=c99
 DFLAGS=-lm
 SDIR=./src
-ODIR=./obj
 BDIR=./bin
-IDIR=./inc
-INCLUDES = -I$(IDIR)
+INCLUDES = -I$(SDIR)
 
-$(BDIR)/tube: $(ODIR)/main.o $(ODIR)/lex.o $(ODIR)/utils.o $(ODIR)/tube.o
-	$(CC) -o $@ $^ $(DFLAGS)
+$(BDIR)/tube: $(BDIR)/main.o $(BDIR)/lex.o $(BDIR)/utils.o $(BDIR)/tube.o
+	$(CC) -o $@ $^ $(DFLAGS);
 
-$(ODIR)/%.o: $(SDIR)/%.c
+$(BDIR)/%.o: $(SDIR)/%.c
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $^ $(DFLAGS)
 
 clean:
-	rm $(BDIR)/tube; rm $(ODIR)/*.o
+	rm $(BDIR)/tube; rm $(BDIR)/*.o
