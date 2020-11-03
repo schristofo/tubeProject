@@ -3,4 +3,5 @@ tube.exe
 lex.o
 utils.o
 main.o
+tube.o
 test.txt

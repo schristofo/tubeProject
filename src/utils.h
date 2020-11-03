@@ -18,6 +18,7 @@ void med(double *x, size_t *xsize);
 void mean(double *x, size_t *xsize);
 void max(double *x, size_t *xsize);
 void min(double *x, size_t *xsize);
+void extract(double *x, size_t xsize);
 void sort(double *x, size_t xsize);
 void idx(double *x, size_t *xsize, size_t d);
 

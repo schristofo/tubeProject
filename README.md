@@ -51,7 +51,7 @@ Here is an example of finding a week's average temperature in Celsius and conver
   - `max`: outputs the maximum value of an input array. (input: array, output: num)
   - `min`: outputs the minimum value of an input array. (input: array, output: num)
   - `bp`: breakpoint. prints the value and and passes it to the next function. (input: anything, output: inp)
-  - `extract`: extracts the input to an output file and passes it to the next function. (input: anything, output: inp)
+  - `extract`: creates an `./output.txt` file and extracts the input. (input: anything, output: inp)
   - `sort`: sorts a given array. (input: array, output: num)
   - `idx<num>`: outputs the `<num>`th element of a given array. (input: array, output: num)
 

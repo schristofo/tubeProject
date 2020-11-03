@@ -105,6 +105,21 @@ void min(double *x, size_t *xsize) {
   *xsize = 1;
 }
 
+void extract(double *x, size_t xsize) {
+  FILE *ofile = fopen("./output.txt", "w");
+
+  if(xsize != 1) {
+    fprintf(ofile, "[ %g", *x);
+    for (size_t i=1; i<xsize; i++) fprintf(ofile, ", %g", *(x+i));
+    fprintf(ofile, " ]\n");
+  }
+  else {
+    fprintf(ofile, "%g\n", *x);
+  }
+
+  fclose(ofile);
+}
+
 void sort(double *x, size_t xsize) {
    size_t i,j;
 

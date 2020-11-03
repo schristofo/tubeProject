@@ -208,6 +208,7 @@ int tube(int argc, char * argv[]) {
       }
       else if(tk == EXTRACTTK) {
         printf("extract");
+        extract(x, xsize);
         state = 0;
         layerNum++;
       }
