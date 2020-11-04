@@ -5,7 +5,7 @@ SDIR=./src
 BDIR=./bin
 INCLUDES = -I$(SDIR)
 
-tube: $(BDIR)/main.o $(BDIR)/lex.o $(BDIR)/utils.o $(BDIR)/tube.o
+tube: $(BDIR)/main.o $(BDIR)/lex.o $(BDIR)/utils.o $(BDIR)/tube.o $(BDIR)/model_builder.o
 	$(CC) -o $@ $^ $(DFLAGS);
 
 $(BDIR)/%.o: $(SDIR)/%.c

@@ -75,8 +75,9 @@ to clean.
 gcc -o bin/main.o -c src/main.c
 gcc -o bin/lex.o -c src/lex.c
 gcc -o bin/tube.o -c src/tube.c
+gcc -o bin/model_builder.o -c src/model_builder.c
 gcc -o bin/utils.o -c src/utils.c -lm
-gcc -o ./tube bin/main.o bin/tube.o bin/lex.o bin/utils.o -lm
+gcc -o ./tube bin/main.o bin/tube.o bin/lex.o bin/utils.o bin/model_builder.o -lm
 ```
 to compile, and:
 ```bash
@@ -84,6 +85,8 @@ del -f ./tube
 del -f bin/main.o
 del -f bin/lex.o
 del -f bin/utils.o
+del -f bin/tube.o
+del -f bin/model_builder.o
 ```
 to clean.
 
@@ -99,7 +102,7 @@ Here is a list of all the available commands: <br/>
   - `output`: Define output file path
   - `clear`: Delete all the paths
   <br/>
-    
+
 **model execution**:
   - `compile`: Compile and print the model
   - `demo`: Run a demonstration model
