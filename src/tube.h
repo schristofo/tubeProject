@@ -6,8 +6,10 @@
 #include <string.h>
 #include "lex.h"
 #include "utils.h"
-#include "tube.h"
 
 int tube(int argc, char * argv[]);
+int help();
+int clear();
+int run(char *modpath, char *inppath, char *outpath);
 
 #endif

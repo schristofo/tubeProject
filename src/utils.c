@@ -8,9 +8,9 @@ void swap(double *p,double *q) {
    *q=t;
 }
 
-void num(char *argv1, double *x) {
+void num(char *inppath, double *x) {
 
-  FILE *ifile = fopen(argv1, "r");
+  FILE *ifile = fopen(inppath, "r");
   if(ifile == NULL){
     printf("\n\nError: Input file missing or corrupted.\nTry using a different path..\n");
     exit(0);
@@ -20,9 +20,9 @@ void num(char *argv1, double *x) {
   fclose(ifile);
 }
 
-void array(char *argv1, double *x, size_t xsize) {
+void array(char *inppath, double *x, size_t xsize) {
 
-  FILE *ifile = fopen(argv1, "r");
+  FILE *ifile = fopen(inppath, "r");
   double *num = (double*) malloc(sizeof(double));
 
   if(ifile == NULL){
@@ -105,8 +105,8 @@ void min(double *x, size_t *xsize) {
   *xsize = 1;
 }
 
-void extract(double *x, size_t xsize) {
-  FILE *ofile = fopen("./output.txt", "w");
+void extract(char *outpath, double *x, size_t xsize) {
+  FILE *ofile = fopen(outpath, "w");
 
   if(xsize != 1) {
     fprintf(ofile, "[ %g", *x);

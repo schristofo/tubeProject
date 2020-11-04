@@ -5,11 +5,11 @@ SDIR=./src
 BDIR=./bin
 INCLUDES = -I$(SDIR)
 
-$(BDIR)/tube: $(BDIR)/main.o $(BDIR)/lex.o $(BDIR)/utils.o $(BDIR)/tube.o
+tube: $(BDIR)/main.o $(BDIR)/lex.o $(BDIR)/utils.o $(BDIR)/tube.o
 	$(CC) -o $@ $^ $(DFLAGS);
 
 $(BDIR)/%.o: $(SDIR)/%.c
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $^ $(DFLAGS)
 
 clean:
-	rm $(BDIR)/tube; rm $(BDIR)/*.o
+	rm ./tube; rm $(BDIR)/*.o
