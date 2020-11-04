@@ -150,10 +150,10 @@ int tube(int argc, char * argv[]) {
 int help() {
   //print help
   printf("Usage: tube <command> [<args>]\n\nHere is a list of all the available commands:\n\n"
-  "path definition:\n"
+  "path modification:\n"
   "   model     Define model file path\n"
   "   input     Define input file path\n"
-  "   output    Define output file path\n\n"
+  "   output    Define output file path\n"
   "   clear     Delete all the paths\n\n"
   "model execution:\n"
   "   compile   Compile and print the model\n"

@@ -76,11 +76,11 @@ gcc -o bin/main.o -c src/main.c
 gcc -o bin/lex.o -c src/lex.c
 gcc -o bin/tube.o -c src/tube.c
 gcc -o bin/utils.o -c src/utils.c -lm
-gcc -o bin/tube bin/main.o bin/tube.o bin/lex.o bin/utils.o -lm
+gcc -o ./tube bin/main.o bin/tube.o bin/lex.o bin/utils.o -lm
 ```
 to compile, and:
 ```bash
-del -f bin/tube
+del -f ./tube
 del -f bin/main.o
 del -f bin/lex.o
 del -f bin/utils.o
@@ -89,16 +89,20 @@ to clean.
 
 ## Usage
 
-```bash
-./bin/tube <input-file-path> <model-file-path>
-```
-or
-```bash
-cd bin
-./tube <input-file-path> <model-file-path>
-```
+Type: `tube <command> [<args>]` to execute.
 
-to execute. You can use input and model samples from the `./input`, `./model` sub-directories,
+Here is a list of all the available commands:
+- **path modification**:
+  - `model`: Define model file path
+  - `input`: Define input file path
+  - `output`: Define output file path
+  - `clear`: Delete all the paths
+- **model execution**:
+  - `compile`: Compile and print the model
+  - `demo`: Run a demonstration model
+  - `run`: Run the model using user-defined paths
+
+You can use input and model samples from the `./input`, `./model` sub-directories,
 or you can create and use your own models.
 
 > NOTE: Use `tube` instead of `./tube` on Windows.
