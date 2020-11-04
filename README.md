@@ -91,13 +91,16 @@ to clean.
 
 Type: `tube <command> [<args>]` to execute.
 
-Here is a list of all the available commands:
-- **path modification**:
+Here is a list of all the available commands: <br/>
+
+**path modification**:
   - `model`: Define model file path
   - `input`: Define input file path
   - `output`: Define output file path
   - `clear`: Delete all the paths
-- **model execution**:
+  <br/>
+    
+**model execution**:
   - `compile`: Compile and print the model
   - `demo`: Run a demonstration model
   - `run`: Run the model using user-defined paths
