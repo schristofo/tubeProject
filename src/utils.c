@@ -39,73 +39,169 @@ void array(char *inppath, double *x, size_t xsize) {
   fclose(ifile);
 }
 
-void add(double *x, size_t xsize, double b) {
-  for(size_t i=0; i<xsize; i++) {
-    *(x+i) = *(x+i) + b;
+int add(double *x, size_t xsize) {
+
+  double d;
+  tk=lex(str);
+
+  if(tk == E2){
+    printf("(int%s)", str);
   }
+  else if(tk == E3) {
+    printf("(real%s)", str);
+  }
+  else {
+    printf("\n\nError: Numeral value expected.\n");
+    return 4;
+  }
+  sscanf(str, "%lf", &d);
+  for(size_t i=0; i<xsize; i++) {
+    *(x+i) = *(x+i) + d;
+  }
+  return 0;
 }
 
-void sub(double *x, size_t xsize, double b) {
-  for(size_t i=0; i<xsize; i++) {
-    *(x+i) = *(x+i) - b;
+int sub(double *x, size_t xsize) {
+  double d;
+  tk=lex(str);
+
+  if(tk == E2) {
+    printf("(int%s)", str);
   }
+  else if(tk == E3) {
+    printf("(real%s)", str);
+  }
+  else {
+    printf("\n\nError: Numeral value expected.\n");
+    return 4;
+  }
+  sscanf(str, "%lf", &d);
+  for(size_t i=0; i<xsize; i++) {
+    *(x+i) = *(x+i) - d;
+  }
+  return 0;
 }
 
-void mult(double *x, size_t xsize, double b) {
-  for(size_t i=0; i<xsize; i++) {
-    *(x+i) = *(x+i) * b;
+int mult(double *x, size_t xsize) {
+  double d;
+  tk=lex(str);
+
+  if(tk == E2) {
+    printf("(int%s)", str);
   }
+  else if(tk == E3) {
+    printf("(real%s)", str);
+  }
+  else {
+    printf("\n\nError: Numeral value expected.\n");
+    return 4;
+  }
+  sscanf(str, "%lf", &d);
+  for(size_t i=0; i<xsize; i++) {
+    *(x+i) = *(x+i) * d;
+  }
+  return 0;
 }
 
-void power(double *x, size_t xsize, double b) {
-  for(size_t i=0; i<xsize; i++) {
-    *(x+i) = pow(*(x+i), b);
+int power(double *x, size_t xsize) {
+  double d;
+  tk=lex(str);
+
+  if(tk == E2) {
+    printf("(int%s)", str);
   }
+  else if(tk == E3) {
+    printf("(real%s)", str);
+  }
+  else {
+    printf("\n\nError: Numeral value expected.\n");
+    return 4;
+  }
+  sscanf(str, "%lf", &d);
+  for(size_t i=0; i<xsize; i++) {
+    *(x+i) = pow(*(x+i), d);
+  }
+  return 0;
 }
 
-void mean(double *x, size_t *xsize) {
+int mean(double *x, size_t *xsize) {
   double t = 0;
-  for(size_t i=0; i<*xsize; i++){
-    t += *(x+i);
+
+  if(*xsize != 1) {
+    for(size_t i=0; i<*xsize; i++){
+      t += *(x+i);
+    }
+    t = t / *xsize;
+    *x = t;
+    *xsize = 1;
+    x = (double*) realloc(x, 1);
   }
-  t = t / *xsize;
-  *x = t;
-  *xsize = 1;
+  else {
+    printf("\n\nError: (mean) expected array as input.\n");
+    return 4;
+  }
+  return 0;
 }
 
-void med(double *x, size_t *xsize) {
+int med(double *x, size_t *xsize) {
   size_t n = (*xsize+1)/2-1;
-  sort(x, *xsize);
 
-  *x = *(x+n);
-  *xsize = 1;
+  if(*xsize != 1) {
+    sort(x, *xsize);
+    *x = *(x+n);
+    *xsize = 1;
+    x = (double*) realloc(x, 1);
+  }
+  else {
+    printf("\n\nError: (med) expected array as input.\n");
+    return 4;
+  }
+  return 0;
 }
 
-void max(double *x, size_t *xsize) {
+int max(double *x, size_t *xsize) {
   double max = *x;
 
-  for(size_t i=1; i<*xsize; i++) {
-    if(*(x+i) > max) {
-      max = *(x+i);
+  if(*xsize != 1) {
+
+    for(size_t i=1; i<*xsize; i++) {
+      if(*(x+i) > max) {
+        max = *(x+i);
+      }
     }
+    *x = max;
+    *xsize = 1;
+    x = (double*) realloc(x, 1);
   }
-  *x = max;
-  *xsize = 1;
+  else {
+    printf("\n\nError: (max) expected array as input.\n");
+    return 4;
+  }
+  return 0;
 }
 
-void min(double *x, size_t *xsize) {
+int min(double *x, size_t *xsize) {
   double min = *x;
 
-  for(size_t i=1; i<*xsize; i++) {
-    if(*(x+i) < min) {
-      min = *(x+i);
+  if(*xsize != 1) {
+
+    for(size_t i=1; i<*xsize; i++) {
+      if(*(x+i) < min) {
+        min = *(x+i);
+      }
     }
+    *x = min;
+    *xsize = 1;
+    x = (double*) realloc(x, 1);
   }
-  *x = min;
-  *xsize = 1;
+  else {
+    printf("\n\nError: (min) expected array as input.\n");
+    return 4;
+  }
+  return 0;
 }
 
-void extract(char *outpath, double *x, size_t xsize) {
+int extract(char *outpath, double *x, size_t xsize) {
   FILE *ofile = fopen(outpath, "w");
 
   if(xsize != 1) {
@@ -118,20 +214,54 @@ void extract(char *outpath, double *x, size_t xsize) {
   }
 
   fclose(ofile);
+  return 0;
 }
 
-void sort(double *x, size_t xsize) {
+int sort(double *x, size_t xsize) {
    size_t i,j;
 
-   for(i = 0;i < xsize-1;i++) {
-      for(j = 0;j < xsize-i-1;j++) {
-         if(x[j] > x[j+1])
-            swap(&x[j],&x[j+1]);
-      }
+   if(xsize != 1) {
+     for(i = 0;i < xsize-1;i++) {
+        for(j = 0;j < xsize-i-1;j++) {
+           if(x[j] > x[j+1])
+              swap(&x[j],&x[j+1]);
+        }
+     }
    }
+   else {
+     printf("\n\nError: (sort) expected array as input.\n");
+     return 4;
+   }
+   return 0;
 }
 
-void idx(double *x, size_t *xsize, size_t d) {
-  *x = *(x+d);
+int idx(double *x, size_t *xsize) {
+  size_t id;
+
+  //works only for arrays
+  if(*xsize != 1) {
+    tk=lex(str);
+    //check if idx number is integer
+    if(tk == E2) {
+      printf("%s", str);
+    }
+    else {
+      printf("\n\nError: Index number expected.\n");
+      return 4;
+    }
+  }
+  else {
+    printf("\n\nError: (idx) expected array as input.\n");
+    return 4;
+  }
+  id = atoi(str);
+  if(id < 0 || id > *xsize-1) {
+    printf("\n\nError: Index number out of bounds.\n");
+    return 4;
+  }
+  *x = *(x+id);
   *xsize = 1;
+  x = (double*) realloc(x, 1);
+
+  return 0;
 }

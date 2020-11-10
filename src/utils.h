@@ -4,22 +4,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include "lex.h"
 
 //input functions
 void num(char *inppath, double *x);
 void array(char *inppath, double *x, size_t xsize);
 
 //transforming functions
-void add(double *x, size_t xsize, double b);
-void sub(double *x, size_t xsize, double b);
-void mult(double *x, size_t xsize, double b);
-void power(double *x, size_t xsize, double b);
-void med(double *x, size_t *xsize);
-void mean(double *x, size_t *xsize);
-void max(double *x, size_t *xsize);
-void min(double *x, size_t *xsize);
-void extract(char *outpath, double *x, size_t xsize);
-void sort(double *x, size_t xsize);
-void idx(double *x, size_t *xsize, size_t d);
+int add(double *x, size_t xsize);
+int sub(double *x, size_t xsize);
+int mult(double *x, size_t xsize);
+int power(double *x, size_t xsize);
+int med(double *x, size_t *xsize);
+int mean(double *x, size_t *xsize);
+int max(double *x, size_t *xsize);
+int min(double *x, size_t *xsize);
+int extract(char *outpath, double *x, size_t xsize);
+int sort(double *x, size_t xsize);
+int idx(double *x, size_t *xsize);
 
 #endif

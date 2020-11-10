@@ -5,9 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-
-FILE *mfile;
-
 #define MAXLEN 10
 
 #define DASHTK 10
@@ -31,6 +28,11 @@ FILE *mfile;
 #define EXTRACTTK 31
 #define SORTTK 32
 #define IDXTK 33
+
+
+FILE *mfile;
+int tk;
+char str[MAXLEN];
 
 int lex(char token[MAXLEN]);
 

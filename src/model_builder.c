@@ -1,12 +1,10 @@
 #include "model_builder.h"
 
-int tk;
-char str[MAXLEN];
-
 int run(char *modpath, char *inppath, char *outpath) {
 
   struct TubeData x;
   struct TubeData input;
+
   int state = 0;  //model state
   int layerNum = 0;  //model layerNum
   double d;
@@ -46,146 +44,42 @@ int run(char *modpath, char *inppath, char *outpath) {
     else if(state == 1) {
       if(tk == ADDTK){
         printf("add");
-
-        tk=lex(str);
-        if(tk == E2){
-          printf("(int%s)", str);
-        }
-        else if(tk == E3) {
-          printf("(real%s)", str);
-        }
-        else {
-          printf("\n\nError: Numeral value expected.\n");
-          state = 4;
-          continue;
-        }
-        sscanf(str, "%lf", &d);
-        add(x.val, x.size, d);
-
-        state = 0;
+        state=add(x.val, x.size);
         layerNum++;
       }
       else if(tk == SUBTK) {
         printf("sub");
-
-        tk=lex(str);
-        if(tk == E2) {
-          printf("(int%s)", str);
-        }
-        else if(tk == E3) {
-          printf("(real%s)", str);
-        }
-        else {
-          printf("\n\nError: Numeral value expected.\n");
-          state = 4;
-          continue;
-        }
-        sscanf(str, "%lf", &d);
-        sub(x.val, x.size, d);
-
-        state = 0;
+        state=sub(x.val, x.size);
         layerNum++;
       }
       else if(tk == MULTTK) {
         printf("mult");
-
-        tk=lex(str);
-        if(tk == E2) {
-          printf("(int%s)", str);
-        }
-        else if(tk == E3) {
-          printf("(real%s)", str);
-        }
-        else {
-          state = 4;
-          printf("\n\nError: Numeral value expected.\n");
-          continue;
-        }
-        sscanf(str, "%lf", &d);
-        mult(x.val, x.size, d);
-
-        state = 0;
+        state=mult(x.val, x.size);
         layerNum++;
       }
       else if(tk == POWTK) {
         printf("pow");
-
-        tk=lex(str);
-        if(tk == E2) {
-          printf("(int%s)", str);
-        }
-        else if(tk == E3) {
-          printf("(real%s)", str);
-        }
-        else {
-          printf("\n\nError: Numeral value expected.\n");
-          state = 4;
-          continue;
-        }
-        sscanf(str, "%lf", &d);
-        power(x.val, x.size, d);
-
-        state = 0;
+        state=power(x.val, x.size);
         layerNum++;
       }
       else if(tk == MEDTK) {
         printf("med");
-
-        if(x.size != 1) {
-          med(x.val, &(x.size));
-          x.val = (double*) realloc(x.val, 1);
-        }
-        else {
-          printf("\n\nError: (med) expected array as input.\n");
-          state = 4;
-          continue;
-        }
-        state = 0;
+        state=med(x.val, &(x.size));
         layerNum++;
       }
       else if(tk == MEANTK) {
         printf("mean");
-
-        if(x.size != 1) {
-          mean(x.val, &(x.size));
-          x.val = (double*) realloc(x.val, 1);
-        }
-        else {
-          printf("\n\nError: (mean) expected array as input.\n");
-          state = 4;
-          continue;
-        }
-        state = 0;
+        state=mean(x.val, &(x.size));
         layerNum++;
       }
       else if(tk == MAXTK) {
         printf("max");
-
-        if(x.size != 1) {
-          max(x.val, &(x.size));
-          x.val = (double*) realloc(x.val, 1);
-        }
-        else {
-          printf("\n\nError: (max) expected array as input.\n");
-          state = 4;
-          continue;
-        }
-        state = 0;
+        state=max(x.val, &(x.size));
         layerNum++;
       }
       else if(tk == MINTK) {
         printf("min");
-
-        if(x.size != 1) {
-          min(x.val, &(x.size));
-          x.val = (double*) realloc(x.val, 1);
-        }
-        else {
-          printf("\n\nError: (max) expected array as input.\n");
-          state = 4;
-          continue;
-        }
-        state = 0;
+        state=min(x.val, &(x.size));
         layerNum++;
       }
       else if(tk == BPTK) {
@@ -195,58 +89,17 @@ int run(char *modpath, char *inppath, char *outpath) {
       }
       else if(tk == EXTRACTTK) {
         printf("extract");
-        extract(outpath, x.val, x.size);
-        state = 0;
+        state=extract(outpath, x.val, x.size);
         layerNum++;
       }
       else if(tk == SORTTK) {
         printf("sort");
-
-        if(x.size != 1) {
-          sort(x.val, x.size);
-        }
-        else {
-          printf("\n\nError: (sort) expected array as input.\n");
-          state = 4;
-          continue;
-        }
-
-        state = 0;
+        state=sort(x.val, x.size);
         layerNum++;
       }
       else if(tk == IDXTK) {
         printf("idx");
-
-        //works only for arrays
-        if(x.size != 1) {
-          tk=lex(str);
-
-          //check if idx number is integer
-          if(tk == E2) {
-            printf("%s", str);
-          }
-          else {
-            printf("\n\nError: Index number expected.\n");
-            state = 4;
-            continue;
-          }
-        }
-        else {
-          printf("\n\nError: (idx) expected array as input.\n");
-          state = 4;
-          continue;
-        }
-
-        size_t id = atoi(str);
-        if(id < 0 || id > x.size-1) {
-          printf("\n\nError: Index number out of bounds.\n");
-          state = 4;
-          continue;
-        }
-        idx(x.val, &(x.size), id);
-        x.val = (double*) realloc(x.val, 1);
-
-        state = 0;
+        state=idx(x.val, &(x.size));
         layerNum++;
       }
       //EOF
