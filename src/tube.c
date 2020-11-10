@@ -3,12 +3,16 @@
 int tube(int argc, char * argv[]) {
 
   FILE *fp;
+  // names of the files that store the paths of model, input, output files
   char modpath[50], inppath[50], outpath[50];
 
+  // execution without parameters
   if(argc == 1) {
     help();
   }
+  // execution with parameters
   else {
+    // second parameter "model"
     if(strcmp(argv[1], "model") == 0) {
 
       if(argc == 3) {
@@ -23,6 +27,7 @@ int tube(int argc, char * argv[]) {
       }
 
     }
+    // second parameter "input"
     else if(strcmp(argv[1], "input") == 0) {
 
       if(argc == 3) {
@@ -37,6 +42,7 @@ int tube(int argc, char * argv[]) {
       }
 
     }
+    // second parameter "output"
     else if(strcmp(argv[1], "output") == 0) {
 
       if(argc == 3) {
@@ -51,6 +57,7 @@ int tube(int argc, char * argv[]) {
       }
 
     }
+    // second parameter "compile"
     else if(strcmp(argv[1], "compile") == 0) {
 
       printf("This feature is not supported yet.\n\n"
@@ -58,6 +65,7 @@ int tube(int argc, char * argv[]) {
       , argv[0], argv[0]);
 
     }
+    // second parameter "clear"
     else if(strcmp(argv[1], "clear") == 0) {
 
       if(argc == 2) {
@@ -72,6 +80,7 @@ int tube(int argc, char * argv[]) {
       }
 
     }
+    // second parameter "demo"
     else if(strcmp(argv[1], "demo") == 0) {
 
       if(argc == 2) {
@@ -84,6 +93,7 @@ int tube(int argc, char * argv[]) {
       }
 
     }
+    // second parameter "run"
     else if(strcmp(argv[1], "run") == 0) {
 
       if(argc == 2) {
@@ -123,6 +133,7 @@ int tube(int argc, char * argv[]) {
       }
 
     }
+    // second parameter "help"
     else if(strcmp(argv[1], "help") == 0) {
 
       if(argc == 2) {
@@ -135,6 +146,7 @@ int tube(int argc, char * argv[]) {
       }
 
     }
+    // second parameter not recognised
     else {
       printf("tube: '%s' is not a recognisable tube command.\n\n"
       "Type '%s' or '%s help' to see all of the acceptable commands.\n", argv[1], argv[0], argv[0]);

@@ -7,6 +7,11 @@
 #include "lex.h"
 #include "utils.h"
 
+struct TubeData {
+  double *val;
+  size_t size;
+};
+
 int run(char *modpath, char *inppath, char *outpath);
 
 #endif

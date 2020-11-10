@@ -5,10 +5,8 @@ char str[MAXLEN];
 
 int run(char *modpath, char *inppath, char *outpath) {
 
-  double *x;  //passing argument
-  size_t xsize;
-  double *input;  //input register
-  size_t inputsize;
+  struct TubeData x;
+  struct TubeData input;
   int state = 0;  //model state
   int layerNum = 0;  //model layerNum
   double d;
@@ -62,7 +60,7 @@ int run(char *modpath, char *inppath, char *outpath) {
           continue;
         }
         sscanf(str, "%lf", &d);
-        add(x, xsize, d);
+        add(x.val, x.size, d);
 
         state = 0;
         layerNum++;
@@ -83,7 +81,7 @@ int run(char *modpath, char *inppath, char *outpath) {
           continue;
         }
         sscanf(str, "%lf", &d);
-        sub(x, xsize, d);
+        sub(x.val, x.size, d);
 
         state = 0;
         layerNum++;
@@ -104,7 +102,7 @@ int run(char *modpath, char *inppath, char *outpath) {
           continue;
         }
         sscanf(str, "%lf", &d);
-        mult(x, xsize, d);
+        mult(x.val, x.size, d);
 
         state = 0;
         layerNum++;
@@ -125,7 +123,7 @@ int run(char *modpath, char *inppath, char *outpath) {
           continue;
         }
         sscanf(str, "%lf", &d);
-        power(x, xsize, d);
+        power(x.val, x.size, d);
 
         state = 0;
         layerNum++;
@@ -133,9 +131,9 @@ int run(char *modpath, char *inppath, char *outpath) {
       else if(tk == MEDTK) {
         printf("med");
 
-        if(xsize != 1) {
-          med(x, &xsize);
-          x = (double*) realloc(x, 1);
+        if(x.size != 1) {
+          med(x.val, &(x.size));
+          x.val = (double*) realloc(x.val, 1);
         }
         else {
           printf("\n\nError: (med) expected array as input.\n");
@@ -148,9 +146,9 @@ int run(char *modpath, char *inppath, char *outpath) {
       else if(tk == MEANTK) {
         printf("mean");
 
-        if(xsize != 1) {
-          mean(x, &xsize);
-          x = (double*) realloc(x, 1);
+        if(x.size != 1) {
+          mean(x.val, &(x.size));
+          x.val = (double*) realloc(x.val, 1);
         }
         else {
           printf("\n\nError: (mean) expected array as input.\n");
@@ -163,9 +161,9 @@ int run(char *modpath, char *inppath, char *outpath) {
       else if(tk == MAXTK) {
         printf("max");
 
-        if(xsize != 1) {
-          max(x, &xsize);
-          x = (double*) realloc(x, 1);
+        if(x.size != 1) {
+          max(x.val, &(x.size));
+          x.val = (double*) realloc(x.val, 1);
         }
         else {
           printf("\n\nError: (max) expected array as input.\n");
@@ -178,9 +176,9 @@ int run(char *modpath, char *inppath, char *outpath) {
       else if(tk == MINTK) {
         printf("min");
 
-        if(xsize != 1) {
-          min(x, &xsize);
-          x = (double*) realloc(x, 1);
+        if(x.size != 1) {
+          min(x.val, &(x.size));
+          x.val = (double*) realloc(x.val, 1);
         }
         else {
           printf("\n\nError: (max) expected array as input.\n");
@@ -197,15 +195,15 @@ int run(char *modpath, char *inppath, char *outpath) {
       }
       else if(tk == EXTRACTTK) {
         printf("extract");
-        extract(outpath, x, xsize);
+        extract(outpath, x.val, x.size);
         state = 0;
         layerNum++;
       }
       else if(tk == SORTTK) {
         printf("sort");
 
-        if(xsize != 1) {
-          sort(x, xsize);
+        if(x.size != 1) {
+          sort(x.val, x.size);
         }
         else {
           printf("\n\nError: (sort) expected array as input.\n");
@@ -220,7 +218,7 @@ int run(char *modpath, char *inppath, char *outpath) {
         printf("idx");
 
         //works only for arrays
-        if(xsize != 1) {
+        if(x.size != 1) {
           tk=lex(str);
 
           //check if idx number is integer
@@ -240,13 +238,13 @@ int run(char *modpath, char *inppath, char *outpath) {
         }
 
         size_t id = atoi(str);
-        if(id < 0 || id > xsize-1) {
+        if(id < 0 || id > x.size-1) {
           printf("\n\nError: Index number out of bounds.\n");
           state = 4;
           continue;
         }
-        idx(x, &xsize, id);
-        x = (double*) realloc(x, 1);
+        idx(x.val, &(x.size), id);
+        x.val = (double*) realloc(x.val, 1);
 
         state = 0;
         layerNum++;
@@ -264,12 +262,12 @@ int run(char *modpath, char *inppath, char *outpath) {
     else if(state == 2) {
       if(tk == NUMTK) {
         printf("num");
-        xsize=1;
-        inputsize=1;
-        x = (double*) malloc(sizeof(double));
-        input = (double*) malloc(sizeof(double));
-        num(inppath, x);
-        *input = *x;
+        x.size=1;
+        input.size=1;
+        x.val = (double*) malloc(sizeof(double));
+        input.val = (double*) malloc(sizeof(double));
+        num(inppath, x.val);
+        *(input.val) = *(x.val);
 
         state = 0;
         layerNum++;
@@ -282,8 +280,8 @@ int run(char *modpath, char *inppath, char *outpath) {
         tk=lex(str);
         if(tk == E2) {
           printf("%s", str);
-          xsize=(size_t)atoi(str);
-          inputsize=xsize;
+          x.size=(size_t)atoi(str);
+          input.size=x.size;
         }
         else {
           printf("\n\nError: Array size expected.\n");
@@ -291,11 +289,11 @@ int run(char *modpath, char *inppath, char *outpath) {
           continue;
         }
         // import array
-        x = (double*) malloc(xsize*sizeof(double));
-        input = (double*) malloc(xsize*sizeof(double));
-        array(inppath, x, xsize);
-        for(int i=0; i<xsize; i++) {
-          *(input+i)=*(x+i);
+        x.val = (double*) malloc(x.size*sizeof(double));
+        input.val = (double*) malloc(x.size*sizeof(double));
+        array(inppath, x.val, x.size);
+        for(int i=0; i<x.size; i++) {
+          *(input.val+i)=*(x.val+i);
         }
 
         state = 0;
@@ -315,27 +313,27 @@ int run(char *modpath, char *inppath, char *outpath) {
       else printf(" . depth: 1 layer\n");
 
       //print input
-      if(inputsize != 1) {
-        printf(" . input: [ %g", *input);
-        for (size_t i=1; i<inputsize; i++) printf(", %g", *(input+i));
+      if(input.size != 1) {
+        printf(" . input: [ %g", *(input.val));
+        for (size_t i=1; i<input.size; i++) printf(", %g", *(input.val+i));
         printf(" ]\n");
       }
       else {
-        printf(" . input: %g\n", *input);
+        printf(" . input: %g\n", *(input.val));
       }
 
       //print output
-      if(xsize != 1) {
-        printf(" . output: [ %g", *x);
-        for (size_t i=1; i<xsize; i++) printf(", %g", *(x+i));
+      if(x.size != 1) {
+        printf(" . output: [ %g", *(x.val));
+        for (size_t i=1; i<x.size; i++) printf(", %g", *(x.val+i));
         printf(" ]\n");
       }
       else {
-        printf(" . output: %g\n", *x);
+        printf(" . output: %g\n", *(x.val));
       }
 
-      free(x);
-      free(input);
+      free(x.val);
+      free(input.val);
       break;
     }
     //state 4: final state (fail)
