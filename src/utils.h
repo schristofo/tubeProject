@@ -23,4 +23,8 @@ int extract(char *outpath, double *x, size_t xsize);
 int sort(double *x, size_t xsize);
 int idx(double *x, size_t *xsize);
 
+// DEFINE NEW FUNCTIONS HERE
+// ...
+// DEFINE NEW FUNCTIONS HERE
+
 #endif

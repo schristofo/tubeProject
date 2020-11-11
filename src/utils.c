@@ -265,3 +265,7 @@ int idx(double *x, size_t *xsize) {
 
   return 0;
 }
+
+// SPECIFY YOUR NEW FUNCTIONS HERE
+// ...
+// SPECIFY YOUR NEW FUNCTIONS HERE

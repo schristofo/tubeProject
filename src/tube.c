@@ -84,6 +84,16 @@ int tube(int argc, char * argv[]) {
     else if(strcmp(argv[1], "demo") == 0) {
 
       if(argc == 2) {
+        printf("# This is a demonstration of a 'tube run' session\n"
+        "# using 'model/model-1.txt' file as the model file and \n"
+        "# 'input/1to10.txt' as the input file. As you can see, \n"
+        "# in the beggining, tube builds our model and prints all\n"
+        "# of its block-elements. Next, information is given about\n"
+        "# our model's characteristics, as well as, the input and\n"
+        "# the output messages. In order to print our result in the\n"
+        "# output file we should use the 'extract' function inside\n"
+        "# our model.\n\n"
+        );
         run("./model/model-1.txt", "./input/1to10.txt", 0);
       }
       else {

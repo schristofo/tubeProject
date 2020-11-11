@@ -1,1 +1,1 @@
-- array 10 -sub3- pow3 - mean- add 5- mult 0.559 - 
+- array 10 - mean- add 5- mult 0.559 - 

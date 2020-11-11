@@ -4,21 +4,20 @@ int lex(char token[MAXLEN])
 {
 
 	char c;
-	int state,input,i;
+	int lexstate,input,i;
 
-	int mat[5][7]={
-		{0,1,2,DASHTK,NATK,EOFTK,NATK}, //starting point state
-		{E1,1,E1,E1,E1,E1,E1}, //function state
-		{E2,E2,2,E2,3,E2,E2}, //int number state
-		{E3,E3,3,E3,E3,E3,E3}, //real number state
-		{DASHTK,DASHTK,DASHTK,DASHTK,DASHTK,DASHTK,DASHTK}, //dash state
+	int mat[4][8]={
+		{0,1,2,DASHTK,NATK,COLONTK,EOFTK,NATK}, //starting point state
+		{E1,1,E1,E1,E1,E1,E1,E1}, //function state
+		{E2,E2,2,E2,3,E2,E2,E2}, //int number state
+		{E3,E3,3,E3,E3,E3,E3,E3}, //real number state
 	};
 
 
-	state=0; //initial state - first row
+	lexstate=0; //initial state - first row
 	i=0;     //token string index
 
-	while(state>=0 && state<10){ //final states starting after 10
+	while(lexstate>=0 && lexstate<10){ //final states starting after 10
 
 		c=getc(mfile); //read next character from file
 
@@ -32,28 +31,31 @@ int lex(char token[MAXLEN])
 			input=3;
 		}else if(c=='.'){
 			input=4;
-		}else if(c==EOF){
+		}else if(c==':'){
 			input=5;
-		}else{
+		}else if(c==EOF){
 			input=6;
+		}else{
+			input=7;
 		}
 
-		state=mat[state][input]; //next state transition
+		lexstate=mat[lexstate][input]; //next state transition
 		token[i]=c; //add character to token string
 		i++;
-		if(state==0) i=0;  //while i am in state 0 i dont save anything
+		if(lexstate==0) i=0;  //while i am in state 0 i dont save anything
 	}
 	token[i]='\0';
 
-	if(state==E1 || state==E2 || state==E3){
+	if(lexstate==E1 || lexstate==E2 || lexstate==E3){
 		ungetc(c,mfile); //return the last read character to the file
 		token[i-1]='\0'; //renew the array
 	}
 
 	//final states
-	if(state==E1){
+	if(lexstate==E1){
 		if(strcmp(token,"num")==0) return NUMTK;
 		if(strcmp(token,"array")==0) return ARRAYTK;
+		if(strcmp(token,"matrix")==0) return MATRIXTK;
 		if(strcmp(token,"add")==0) return ADDTK;
 		if(strcmp(token,"sub")==0)	return SUBTK;
 		if(strcmp(token,"mult")==0) return MULTTK;
@@ -66,13 +68,14 @@ int lex(char token[MAXLEN])
 		if(strcmp(token,"extract")==0) return EXTRACTTK;
 		if(strcmp(token,"sort")==0) return SORTTK;
 		if(strcmp(token,"idx")==0) return IDXTK;
+		// if(strcmp(token,"new_function_name")==0) return NFTK;
 	}
-	else if(state==E2){ //int
+	else if(lexstate==E2){ //int
 		return E2;
 	}
-	else if(state==E3){ //real
+	else if(lexstate==E3){ //real
 		return E3;
 	}
 
-	return state;
+	return lexstate;
 }

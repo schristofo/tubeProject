@@ -10,6 +10,7 @@
 struct TubeData {
   double *val;
   size_t size;
+  int dim;
 };
 
 int run(char *modpath, char *inppath, char *outpath);

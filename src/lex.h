@@ -8,27 +8,30 @@
 #define MAXLEN 10
 
 #define DASHTK 10
-#define E1 11 //function
-#define E2 12 //integer
-#define E3 13 //real
-#define NATK 14
-#define EOFTK 15
+#define COLONTK 11
+#define E1 12 //function
+#define E2 13 //integer
+#define E3 14 //real
+#define NATK 15
+#define EOFTK 16
 
 #define NUMTK 20
 #define ARRAYTK 21
-#define ADDTK 22
-#define SUBTK 23
-#define MULTTK 24
-#define POWTK 25
-#define MEDTK 26
-#define MEANTK 27
-#define MAXTK 28
-#define MINTK 29
-#define BPTK 30
-#define EXTRACTTK 31
-#define SORTTK 32
-#define IDXTK 33
-
+#define MATRIXTK 22
+#define ADDTK 30
+#define SUBTK 31
+#define MULTTK 32
+#define POWTK 33
+#define MEDTK 34
+#define MEANTK 35
+#define MAXTK 36
+#define MINTK 37
+#define BPTK 38
+#define EXTRACTTK 39
+#define SORTTK 40
+#define IDXTK 41
+// GIVE YOUR FUNCTION A UNIQUE TOKEN (PS. LAST-TOKEN-INDEX + 1)
+// #define NFTK
 
 FILE *mfile;
 int tk;

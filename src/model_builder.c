@@ -7,7 +7,6 @@ int run(char *modpath, char *inppath, char *outpath) {
 
   int state = 0;  //model state
   int layerNum = 0;  //model layerNum
-  double d;
 
 	//open model file
 	mfile = fopen(modpath, "r");
@@ -102,8 +101,11 @@ int run(char *modpath, char *inppath, char *outpath) {
         state=idx(x.val, &(x.size));
         layerNum++;
       }
-      //EOF
+      // CALL YOUR NEW FUNCTION IN HERE
+      // ...
+      // CALL YOUR NEW FUNCTION IN HERE
       else if(tk == EOFTK) {
+        //EOF
         state = 3;
       }
       else {
@@ -152,6 +154,14 @@ int run(char *modpath, char *inppath, char *outpath) {
         state = 0;
         layerNum++;
       }
+      // else if(tk == MATRIXTK) {
+      //   printf("Hello World :)\n");
+      //   state = 0;
+      //   layerNum++;
+      // }
+      // CALL YOUR NEW INPUT FUNCTION IN HERE
+      // ...
+      // CALL YOUR NEW INPUT FUNCTION IN HERE
       else {
         printf("\n\nError: Input function expected.\n");
         state = 4;
