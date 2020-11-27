@@ -15,7 +15,12 @@ int run(char *modpath, char *inppath, char *outpath) {
     return 1;
 	}
 
-  //start model builder
+  //print start point in output file
+  FILE *ofile = fopen(outpath, "a");
+  fprintf(ofile, "session start - - -\n");
+  fclose(ofile);
+
+  //start model building
   printf("\n> model: ");
   tk=lex(str);
   if(tk == DASHTK) {
@@ -195,12 +200,22 @@ int run(char *modpath, char *inppath, char *outpath) {
         printf(" . output: %g\n", *(x.val));
       }
 
+      extract(outpath, x.val, x.size);
+      FILE *ofile = fopen(outpath, "a");
+      fprintf(ofile, "session end - - - -\n\n");
+      fclose(ofile);
+
       free(x.val);
       free(input.val);
       break;
     }
     //state 4: final state (fail)
     else if(state == 4) {
+
+      FILE *ofile = fopen(outpath, "a");
+      fprintf(ofile, "session abort - - -\n\n");
+      fclose(ofile);
+
       printf("Failure: Abort reading.\n");
       break;
     }

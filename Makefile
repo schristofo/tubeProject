@@ -12,4 +12,4 @@ $(BDIR)/%.o: $(SDIR)/%.c
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $^ $(DFLAGS)
 
 clean:
-	rm ./tube; rm $(BDIR)/*.o
+	rm ./tube; rm $(BDIR)/*.o; rm $(BDIR)/*.txt

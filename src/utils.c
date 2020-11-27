@@ -210,8 +210,8 @@ int min(double *x, size_t *xsize) {
 }
 
 int extract(char *outpath, double *x, size_t xsize) {
-  FILE *ofile = fopen(outpath, "w");
-
+  FILE *ofile = fopen(outpath, "a");
+  
   if(xsize != 1) {
     fprintf(ofile, "[ %g", *x);
     for (size_t i=1; i<xsize; i++) fprintf(ofile, ", %g", *(x+i));

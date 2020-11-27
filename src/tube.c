@@ -86,7 +86,7 @@ int tube(int argc, char * argv[]) {
         "# output file we should use the 'extract' function inside\n"
         "# our model.\n\n"
         );
-        run("./model/model-1.txt", "./input/1to10.txt", NULL, 1);
+        run("./model/model-1.txt", "./input/1to10.txt", "./bin/tempout.txt");
       }
       else {
         printf("tube: '%s' has too many arguments.\nUsage: ./tube demo\n\n"
@@ -126,7 +126,7 @@ int tube(int argc, char * argv[]) {
         fscanf(fp, "%s", outpath);
         fclose(fp);
 
-        run(modpath, inppath, outpath, 1);
+        run(modpath, inppath, outpath);
       }
       else {
         printf("tube: '%s' has too many arguments.\nUsage: ./tube run\n\n"
