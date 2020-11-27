@@ -57,14 +57,6 @@ int tube(int argc, char * argv[]) {
       }
 
     }
-    // second parameter "compile"
-    else if(strcmp(argv[1], "compile") == 0) {
-
-      printf("This feature is not supported yet.\n\n"
-      "Type '%s' or '%s help' to see all of the acceptable commands.\n"
-      , argv[0], argv[0]);
-
-    }
     // second parameter "clear"
     else if(strcmp(argv[1], "clear") == 0) {
 
@@ -94,7 +86,7 @@ int tube(int argc, char * argv[]) {
         "# output file we should use the 'extract' function inside\n"
         "# our model.\n\n"
         );
-        run("./model/model-1.txt", "./input/1to10.txt", 0);
+        run("./model/model-1.txt", "./input/1to10.txt", NULL, 1);
       }
       else {
         printf("tube: '%s' has too many arguments.\nUsage: ./tube demo\n\n"
@@ -134,10 +126,10 @@ int tube(int argc, char * argv[]) {
         fscanf(fp, "%s", outpath);
         fclose(fp);
 
-        run(modpath, inppath, outpath);
+        run(modpath, inppath, outpath, 1);
       }
       else {
-        printf("tube: '%s' has too many number of arguments.\nUsage: ./tube run\n\n"
+        printf("tube: '%s' has too many arguments.\nUsage: ./tube run\n\n"
         "Type '%s' or '%s help' to see all of the acceptable commands.\n"
         , argv[1], argv[0], argv[0]);
       }
@@ -150,7 +142,7 @@ int tube(int argc, char * argv[]) {
         help();
       }
       else {
-        printf("tube: '%s' has too many number of arguments.\nUsage: ./tube help\n\n"
+        printf("tube: '%s' has too many arguments.\nUsage: ./tube help\n\n"
         "Type '%s' or '%s help' to see all of the acceptable commands.\n"
         , argv[1], argv[0], argv[0]);
       }
@@ -175,7 +167,6 @@ int help() {
   "   output    Define output file path\n"
   "   clear     Delete all the paths\n\n"
   "model execution:\n"
-  "   compile   Compile and print the model\n"
   "   demo      Run a demonstration model\n"
   "   run       Run the model using user-defined paths\n\n");
   return 0;

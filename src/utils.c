@@ -8,16 +8,24 @@ void swap(double *p,double *q) {
    *q=t;
 }
 
-void num(char *inppath, double *x) {
+int num(char *inppath, double *xval) {
 
   FILE *ifile = fopen(inppath, "r");
   if(ifile == NULL){
     printf("\n\nError: Input file missing or corrupted.\nTry using a different path..\n");
-    exit(0);
+    return 4;
   }
 
-  fscanf(ifile,"%lf", x);
+  // *xsize=1;
+  // *inputsize=1;
+  // xval = (double*) malloc(sizeof(double));
+  // inputval = (double*) malloc(sizeof(double));
+  // *(inputval) = *(xval);
+  // xval = (double*) malloc(sizeof(double));
+  fscanf(ifile,"%lf", xval);
   fclose(ifile);
+
+  return 0;
 }
 
 void array(char *inppath, double *x, size_t xsize) {

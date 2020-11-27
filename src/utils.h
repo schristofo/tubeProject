@@ -7,7 +7,8 @@
 #include "lex.h"
 
 //input functions
-void num(char *inppath, double *x);
+int num(char *inppath, double *xval);
+// num(inppath, x.val, x.size, input.val, input.size);
 void array(char *inppath, double *x, size_t xsize);
 
 //transforming functions

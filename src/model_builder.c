@@ -43,6 +43,7 @@ int run(char *modpath, char *inppath, char *outpath) {
     else if(state == 1) {
       if(tk == ADDTK){
         printf("add");
+
         state=add(x.val, x.size);
         layerNum++;
       }
@@ -119,12 +120,11 @@ int run(char *modpath, char *inppath, char *outpath) {
         printf("num");
         x.size=1;
         input.size=1;
-        x.val = (double*) malloc(sizeof(double));
         input.val = (double*) malloc(sizeof(double));
-        num(inppath, x.val);
+        x.val = (double*) malloc(sizeof(double));
+        state=num(inppath, x.val);
         *(input.val) = *(x.val);
 
-        state = 0;
         layerNum++;
       }
       else if(tk == ARRAYTK) {
