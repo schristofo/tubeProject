@@ -18,12 +18,13 @@ Notice that every calculation is separated with dashes from the next and previou
 
 ## Usage
 
-You shall set *model*, *input* and *output* path files before executing your model by typing:
+You should set *model*, *input* and *output* path files before executing your model by typing:
 ```bash
 ./tube model [your-model-path]
 ./tube input [your-input-file-path]
 ./tube model [your-output-file-path]
 ```
+
 and then:
 
 ```bash
@@ -31,6 +32,11 @@ and then:
 ```
 for execution.
 
+You can also type:
+```bash
+./tube demo
+```
+to run a demonstration model.
 ## Model Examples
 
 Some typical model examples are shown below:
