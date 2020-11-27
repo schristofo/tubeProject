@@ -104,7 +104,6 @@ Here is a list of all the available commands: <br/>
   <br/>
 
 **model execution**:
-  - `compile`: Compile and print the model
   - `demo`: Run a demonstration model
   - `run`: Run the model using user-defined paths
 
