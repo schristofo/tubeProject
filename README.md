@@ -3,7 +3,7 @@
 
 **tube** is a command line project for easy and fast casual model building. Models consist of a sequence of built-in functions executing calculations/permutations onto a user-defined input. Each function takes as input the output of the previous function and outputs the result to the next one.
 
-<img src="./img/tube.png" alt="blender tubes" style="display: block; margin-left:auto; margin-right:auto; margin-top:30px; margin-bottom:30px; width:99%; border-radius:10px;">  
+<img src="./img/tube.png" alt="blender tubes" style="display: block; margin-left:auto; margin-right:auto; margin-top:30px; margin-bottom:30px; width:99%; border-radius:10px;">
 
 
 ## Format
@@ -16,7 +16,24 @@ The format of the formulas/models is:
 
 Notice that every calculation is separated with dashes from the next and previous one, as well as, the whole model starts with a dash and ends with a dash. You can find analytical documentation for each function in [Functions](#functions) section.  
 
-## Examples
+## Usage
+
+You shall set *model*, *input* and *output* path files before executing your model by typing:
+```bash
+./tube model [your-model-path]
+./tube input [your-input-file-path]
+./tube model [your-output-file-path]
+```
+and then:
+
+```bash
+./tube run
+```
+for execution.
+
+## Model Examples
+
+Some typical model examples are shown below:
 
 - model: `-num-add3-pow2-`,
   with input: `2`,
@@ -90,7 +107,7 @@ del -f bin/model_builder.o
 ```
 to clean.
 
-## Usage
+## Execution
 
 Type: `tube <command> [<args>]` to execute.
 
@@ -111,6 +128,8 @@ You can use input and model samples from the `./input`, `./model` sub-directorie
 or you can create and use your own models.
 
 > NOTE: Use `tube` instead of `./tube` on Windows.
+
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
