@@ -3,7 +3,7 @@
 
 **tube** is a command line project for easy and fast casual model building. Models consist of a sequence of built-in functions executing calculations/permutations onto a user-defined input. Each function takes as input the output of the previous function and outputs the result to the next one.
 
-<img src="./img/tube.png" alt="blender tubes" style="display: block; margin-left:auto; margin-right:auto; margin-top:30px; margin-bottom:30px; width:99%; border-radius:10px;">
+<img src="../media/tube.png?raw=true" alt="blender tubes" style="display: block; margin-left:auto; margin-right:auto; margin-top:30px; margin-bottom:30px; width:99%; border-radius:10px;">
 
 
 ## Format
@@ -55,7 +55,7 @@ Some typical model examples are shown below:
 
 Here is an example of finding a week's average temperature in Celsius and converting it to Fahrenheit:
 
-<img src="./img/screenshot.png" alt="model screenshot" style="display: block; margin-left:auto; margin-right:auto; margin-top:30px; margin-bottom:30px; width:99%; border-radius:10px;">
+<img src="../media/screenshot.png?raw=true" alt="model screenshot" style="display: block; margin-left:auto; margin-right:auto; margin-top:30px; margin-bottom:30px; width:99%; border-radius:10px;">
 
 
 ## Functions
