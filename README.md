@@ -65,10 +65,10 @@ Here is an example of finding a week's average temperature in Celsius and conver
   - `array<num>`: specifies that the input is an array with <num> positions
 
 ### functions:
-  - `add<num>`: adds `<num>` to the input. (input: num/array, output: num)
-  - `sub<num>`: subtracts `<num>` from the input. (input: num/array, output: num)
-  - `mult<num>`: multiplies the input with the `<num>`. (input: num/array, output: num)
-  - `pow<num>`: input to the power of `<num>`. (input: num/array, output: num)
+  - `add<num>`: adds `<num>` to the input. (input: num/array, output: num/array)
+  - `sub<num>`: subtracts `<num>` from the input. (input: num/array, output: num/array)
+  - `mult<num>`: multiplies the input with the `<num>`. (input: num/array, output: num/array)
+  - `pow<num>`: input to the power of `<num>`. (input: num/array, output: num/array)
   - `med`: outputs the median value of an input array. (input: array, output: num)
   - `mean`: outputs the mean value of an input array. (input: array, output: num)
   - `max`: outputs the maximum value of an input array. (input: array, output: num)
