@@ -22,7 +22,7 @@ You should set *model*, *input* and *output* path files before executing your mo
 ```bash
 ./tube model [your-model-path]
 ./tube input [your-input-file-path]
-./tube model [your-output-file-path]
+./tube output [your-output-file-path]
 ```
 
 and then:
